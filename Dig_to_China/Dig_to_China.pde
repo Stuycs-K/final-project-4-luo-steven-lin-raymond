@@ -4,6 +4,7 @@ Level level = new Level();
 
 void setup() {
   size(800, 800);
+  textAlign(CENTER, CENTER);
 }
 
 void draw() {
