@@ -16,5 +16,10 @@ void draw() {
 }
 
 void keyPressed() {
+  menu.keyAction(key);
   game = !game;
+}
+
+void mousePressed() {
+  menu.mouseAction();
 }
