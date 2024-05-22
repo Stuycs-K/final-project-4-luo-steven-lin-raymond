@@ -1,4 +1,4 @@
 public class Player {
-  Player() {
+  public Player() {
   }
 }

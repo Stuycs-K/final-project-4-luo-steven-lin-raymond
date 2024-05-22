@@ -1,11 +1,11 @@
 public class Timer {
   private int time;
   
-  Timer(int time) {
+  public Timer(int time) {
     this.time = time;
   }
   
-  Timer() {
+  public Timer() {
     this(60);
   }
   
