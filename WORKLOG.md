@@ -1,17 +1,15 @@
 # Work Log
 
-## GROUP MEMBER 1
+## Steven Luo
 
-### date x
-
-info
-
-### date y
-
-info
+### 05/22/2024
+- Created basic framework for every class. (Correct displays not created yet.)
+- Main can switch between Menu and Level.
+- Button is displayable and delivers output correctly. (Correct actions not created yet.)
+- Timer is displayable.
 
 
-## GROUP MEMBER 2
+## Raymond Lin
 
 ### date x
 
