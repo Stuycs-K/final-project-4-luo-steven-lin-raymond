@@ -1,11 +1,15 @@
 import java.util.*;
+
 boolean game = false;
-Menu menu = new Menu();
-Level level = new Level();
+Menu menu;
+Level level;
 
 void setup() {
   size(800, 800);
   textAlign(CENTER, CENTER);
+  rectMode(CENTER);
+  menu = new Menu();
+  level = new Level();
 }
 
 void draw() {
@@ -17,8 +21,11 @@ void draw() {
 }
 
 void keyPressed() {
-  menu.keyAction(key);
-  game = !game;
+  if(game) {
+    level.keyAction(key);
+  } else {
+    menu.keyAction(key);
+  }
 }
 
 void mousePressed() {

@@ -13,7 +13,10 @@ public class Level {
     timer.display();
   }
   
-  public void action() {
+  public void keyAction(char key_) {
+  }
+  
+  public void mouseAction() {
   }
   
   private void tick() {
