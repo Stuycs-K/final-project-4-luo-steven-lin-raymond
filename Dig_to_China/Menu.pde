@@ -1,17 +1,21 @@
 public class Menu {
-  Button test = new Button(50, 50, 50, 50);
+  Button begin;
+  
+  public Menu() {
+    begin = new Button(width/2, height - 100, 200, 50, "Begin Game");
+  }
   
   public void display() {
-    background(255);
+    background(0);
     textSize(36);
-    fill(0);
+    fill(255);
     text("MENU", width/2, 50);
-    test.display();
+    begin.display();
   }
   
   public void mouseAction() {
-    if(test.isPressed()) {
-      println("PRESSED");
+    if(begin.isPressed()) {
+      game = !game;
     }
   }
   
