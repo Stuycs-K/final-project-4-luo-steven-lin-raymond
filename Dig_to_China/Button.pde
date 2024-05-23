@@ -1,9 +1,9 @@
 public class Button {
-  String text = "";
-  int x, y;
-  int w, h;
-  color textColor = color(0);
-  color bgColor = color(255);
+  private String text = "";
+  private int x, y;
+  private int w, h;
+  private color textColor = color(0);
+  private color bgColor = color(255);
   
   public Button(int x, int y, int w, int h) {
     this.x = x;

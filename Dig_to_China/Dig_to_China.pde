@@ -3,6 +3,8 @@ import java.util.*;
 boolean game = false;
 Menu menu;
 Level level;
+Player player;
+Timer timer;
 
 void setup() {
   size(800, 800);
@@ -10,6 +12,8 @@ void setup() {
   rectMode(CENTER);
   menu = new Menu();
   level = new Level();
+  player = new Player();
+  timer = new Timer();
 }
 
 void draw() {
