@@ -33,5 +33,9 @@ void keyPressed() {
 }
 
 void mousePressed() {
-  menu.mouseAction();
+  if(game) {
+    level.mouseAction();
+  } else {
+    menu.mouseAction();
+  }
 }
