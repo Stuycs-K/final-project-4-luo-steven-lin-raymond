@@ -9,7 +9,7 @@ Timer timer;
 void setup() {
   size(800, 800);
   textAlign(CENTER, CENTER);
-  rectMode(CENTER);
+  noStroke();
   menu = new Menu();
   level = new Level();
   player = new Player();

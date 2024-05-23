@@ -29,6 +29,7 @@ public class Button {
   }
   
   public void display() {
+    rectMode(CENTER);
     fill(bgColor);
     rect(x, y, w, h);
     fill(textColor);

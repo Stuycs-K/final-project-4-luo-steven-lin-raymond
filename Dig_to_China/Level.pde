@@ -1,5 +1,5 @@
 public class Level {
-  int size = 100;
+  int size = 40;
   
   LinkedList<int[]> map = new LinkedList<>();
   private final int SKY = 0;
@@ -43,13 +43,41 @@ public class Level {
       map.add(row);
     }
     
-    for(int[] x : map) {
-      println(Arrays.toString(x));
-    }
+    //for(int[] x : map) {
+    //  println(Arrays.toString(x));
+    //}
   }
   
   public void display() {
     background(0);
+    rectMode(CORNER);
+    int factor = width / size;
+    int tile;
+    for(int i = 0; i < size; i++) {
+      for(int j = 0; j < size; j++) {
+        tile = map.get(i)[j];
+        if(tile == SKY) {
+          fill(0, 200, 255);
+        }
+        else if(tile == DIRT) {
+          fill(0, 100, 0);
+        }
+        else if(tile == DIAMOND) {
+          fill(0, 250, 250);
+        }
+        else if(tile == URANIUM) {
+          fill(0, 255, 0);
+        }
+        else if(tile == TITANIUM) {
+          fill(100, 100, 100);
+        }
+        else if(tile == TIME) {
+          fill(255);
+        }
+        else fill(0);
+        rect(j*factor, i*factor, factor, factor);
+      }
+    }
     timer.display();
   }
   
