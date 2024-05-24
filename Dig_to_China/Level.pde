@@ -105,9 +105,6 @@ public class Level {
   }
   
   public void press(char key_) {
-    if (key_ == 'w' || key_ == 'W') {
-      inputs[0] = true;
-    }
     if (key_ == 'a' || key_ == 'A') {
       inputs[1] = true;
     }
@@ -120,9 +117,6 @@ public class Level {
   }
   
   public void release(char key_) {
-    if (key_ == 'w' || key_ == 'W') {
-      inputs[0] = false;
-    }
     if (key_ == 'a' || key_ == 'A') {
       inputs[1] = false;
     }
@@ -150,8 +144,6 @@ public class Level {
   }
   
   public void mouseAction() {
-    int[] coords = player.getCoords();
-    dig(coords[0], coords[1]);
   }
   
   private void tick() {
@@ -169,6 +161,8 @@ public class Level {
   private void movePlayer(int dy, int dx){
     int newX = playerX + dx;
     int newY = playerY + dy;
+    
+    
     if (newX >= 0 && newX < size && newY >= 0 && newY < size){
       if (map.get(newY)[newX] != SKY){
         dig(dx, dy);
