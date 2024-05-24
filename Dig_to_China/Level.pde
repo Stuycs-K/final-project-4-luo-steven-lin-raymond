@@ -12,6 +12,8 @@ public class Level {
   private final int PLAYER = 9999;
   
   private boolean[] inputs;
+  private int playerX;
+  private int playerY;
   
   
   public Level() {
@@ -22,7 +24,8 @@ public class Level {
       Arrays.fill(row, SKY);
       map.add(row);
     }
-    
+    playerY = size/2 - 1;
+    playerX = size/2; 
     map.getLast()[size/2] = PLAYER;
     
     row = new int[size];
@@ -102,13 +105,48 @@ public class Level {
   }
   
   public void press(char key_) {
-    mouseAction();
+    if (key_ == 'w' || key_ == 'W') {
+      inputs[0] = true;
+    }
+    if (key_ == 'a' || key_ == 'A') {
+      inputs[1] = true;
+    }
+    if (key_ == 's' || key_ == 'S') {
+      inputs[2] = true;
+    }
+    if (key_ == 'd' || key_ == 'D') {
+      inputs[3] = true;
+    }
   }
   
   public void release(char key_) {
+    if (key_ == 'w' || key_ == 'W') {
+      inputs[0] = false;
+    }
+    if (key_ == 'a' || key_ == 'A') {
+      inputs[1] = false;
+    }
+    if (key_ == 's' || key_ == 'S') {
+      inputs[2] = false;
+    }
+    if (key_ == 'd' || key_ == 'D') {
+      inputs[3] = false;
+    }
   }
   
   private void keyAction() {
+    if (inputs[0]){
+      movePlayer(-1, 0);
+    }
+    if (inputs[1]){
+      movePlayer(0, -1);
+    }
+    if (inputs[2]){
+      movePlayer(1, 0);
+    }
+    if (inputs[3]){
+      movePlayer(0, 1);
+    }
   }
   
   public void mouseAction() {
@@ -117,15 +155,30 @@ public class Level {
   }
   
   private void tick() {
+    keyAction();
   }
   
   public void dig(int x, int y) {
-    int range = player.getRange();
-    for(int i = y-range/2; i < y+range/2; i++) {
-      for(int j = x-range/2; j < x+range/2; j++) {
-        map.get(i)[j] = SKY;
+    int newX = playerX + x;
+    int newY = playerY + y;
+    if (newX >= 0 && newX < size &&   newY >= 0 && newY < size && map.get(newY)[newX] != SKY){
+      map.get(newY)[newX] = SKY;
+    }
+  }
+  
+  private void movePlayer(int dy, int dx){
+    int newX = playerX + dx;
+    int newY = playerY + dy;
+    if (newX >= 0 && newX < size && newY >= 0 && newY < size){
+      if (map.get(newY)[newX] != SKY){
+        dig(dx, dy);
+      }
+      else{
+        map.get(playerY)[playerX] = SKY;
+        playerX = newX;
+        playerY = newY;
+        map.get(playerY)[playerX] = PLAYER;
       }
     }
-    println("RECEIVED");
   }
 }
