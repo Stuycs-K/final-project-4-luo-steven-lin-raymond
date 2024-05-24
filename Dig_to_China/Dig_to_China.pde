@@ -26,12 +26,24 @@ void draw() {
 
 void keyPressed() {
   if(game) {
-    level.keyAction(key);
-  } else {
-    menu.keyAction(key);
+    level.press(key);
+  }
+}
+
+void keyReleased() {
+  if(game) {
+    level.press(key);
   }
 }
 
 void mousePressed() {
-  menu.mouseAction();
+  if(!game) {
+    menu.press();
+  }
+}
+
+void mouseReleased() {
+  if(!game) {
+    menu.release();
+  }
 }
