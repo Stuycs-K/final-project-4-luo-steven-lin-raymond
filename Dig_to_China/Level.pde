@@ -128,7 +128,7 @@ public class Level {
     }
   }
   
-  private void keyAction() {
+  public void keyAction() {
     if (inputs[0]){
       movePlayer(-1, 0);
     }
