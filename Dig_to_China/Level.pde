@@ -102,6 +102,7 @@ public class Level {
   }
   
   public void press(char key_) {
+    mouseAction();
   }
   
   public void release(char key_) {
@@ -111,11 +112,20 @@ public class Level {
   }
   
   public void mouseAction() {
+    int[] coords = player.getCoords();
+    dig(coords[0], coords[1]);
   }
   
   private void tick() {
   }
   
   public void dig(int x, int y) {
+    int range = player.getRange();
+    for(int i = y-range/2; i < y+range/2; i++) {
+      for(int j = x-range/2; j < x+range/2; j++) {
+        map.get(i)[j] = SKY;
+      }
+    }
+    println("RECEIVED");
   }
 }
