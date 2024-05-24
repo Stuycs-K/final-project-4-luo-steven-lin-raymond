@@ -27,12 +27,14 @@ void draw() {
 void keyPressed() {
   if(game) {
     level.press(key);
+    level.keyAction();
   }
 }
 
 void keyReleased() {
   if(game) {
-    level.press(key);
+    level.release(key);
+    level.keyAction();
   }
 }
 
