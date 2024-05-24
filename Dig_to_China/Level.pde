@@ -150,6 +150,8 @@ public class Level {
   }
   
   public void mouseAction() {
+    int[] coords = player.getCoords();
+    dig(coords[0], coords[1]);
   }
   
   private void tick() {
