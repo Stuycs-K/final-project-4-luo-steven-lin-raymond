@@ -1,9 +1,9 @@
 public class Button {
   private String text = "";
-  private int x, y;
-  private int w, h;
+  private int x, y, w, h;
   private color textColor = color(0);
   private color bgColor = color(255);
+  private boolean isPressed = false;
   
   public Button(int x, int y, int w, int h) {
     this.x = x;
@@ -29,14 +29,33 @@ public class Button {
   }
   
   public void display() {
+    if(isPressed){
+      fill(150);
+    }
+    else{
+      fill(255);
+    }
     rectMode(CENTER);
     fill(bgColor);
     rect(x, y, w, h);
     fill(textColor);
+    textSize(20);
     text(text, x, y);
   }
   
+  public void press(){
+    isPressed = true;
+  }
+  
+  public void release() {
+    isPressed = false;
+  }
+  
+  public boolean isMouseOver(int mx, int my){
+    return mx > x - w / 2 && mx < x + w / 2 && my > y - h / 2 && my < y + h / 2;
+  }
+  
   public boolean isPressed() {
-    return x-w/2 < mouseX && mouseX < x+w/2 && y-h/2 < mouseY && mouseY < y+h/2;
+    return isPressed;
   }
 }

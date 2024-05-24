@@ -20,12 +20,15 @@ public class Menu {
   }
   
   public void press() {
-    if(begin.isPressed()) {
-      game = !game;
+    if(begin.isMouseOver(mouseX, mouseY)) {
+      begin.press();
     }
   }
   
   public void release() {
+    if (begin.isPressed() && begin.isMouseOver(mouseX, mouseY)) {
+      game = true;
+      begin.release();
+    }
   }
-  
 }
