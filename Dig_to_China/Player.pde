@@ -9,7 +9,9 @@ public class Player {
     return coords;
   }
   
-  public void keyAction() {
+  public void updatePosition(int dr, int dc) {
+    coords[0] += dr;
+    coords[1] += dc;
   }
   
 }

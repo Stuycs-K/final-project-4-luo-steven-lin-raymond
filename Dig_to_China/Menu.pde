@@ -1,8 +1,10 @@
 public class Menu {
-  Button begin;
+  private Button begin;
+  private boolean[] inputs;
   
   public Menu() {
     begin = new Button(width/2, height - 100, 200, 50, "Begin Game");
+    inputs = new boolean[10];
   }
   
   public void display() {
@@ -13,12 +15,17 @@ public class Menu {
     begin.display();
   }
   
-  public void mouseAction() {
+  public boolean[] getInputs() {
+    return inputs;
+  }
+  
+  public void press() {
     if(begin.isPressed()) {
       game = !game;
     }
   }
   
-  public void keyAction(char key_) {
+  public void release() {
   }
+  
 }

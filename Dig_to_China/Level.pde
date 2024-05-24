@@ -1,7 +1,7 @@
 public class Level {
   public final int size = 40;
   
-  LinkedList<int[]> map = new LinkedList<>();
+  private LinkedList<int[]> map = new LinkedList<>();
   private final int SKY = 0;
   private final int DIRT = 1;
   private final int DIAMOND = 2;
@@ -11,8 +11,11 @@ public class Level {
   private final int STONE = 6;
   private final int PLAYER = 9999;
   
+  private boolean[] inputs;
+  
   
   public Level() {
+    inputs = new boolean[6];
     int[] row;
     for(int i = 0; i < size/2; i++) {
       row = new int[size];
@@ -94,7 +97,17 @@ public class Level {
     timer.display();
   }
   
-  public void keyAction(char key_) {
+  public boolean[] getInputs() {
+    return inputs;
+  }
+  
+  public void press(char key_) {
+  }
+  
+  public void release(char key_) {
+  }
+  
+  private void keyAction() {
   }
   
   public void mouseAction() {
