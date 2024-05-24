@@ -129,9 +129,6 @@ public class Level {
   }
   
   public void keyAction() {
-    if (inputs[0]){
-      movePlayer(-1, 0);
-    }
     if (inputs[1]){
       movePlayer(0, -1);
     }
@@ -150,11 +147,12 @@ public class Level {
     keyAction();
   }
   
-  public void dig(int x, int y) {
-    int newX = playerX + x;
-    int newY = playerY + y;
+  public void dig(int dx, int dy) {
+    int newX = playerX + dx;
+    int newY = playerY + dy;
     if (newX >= 0 && newX < size &&   newY >= 0 && newY < size && map.get(newY)[newX] != SKY){
       map.get(newY)[newX] = SKY;
+      movePlayer(dy, dx);
     }
   }
   
