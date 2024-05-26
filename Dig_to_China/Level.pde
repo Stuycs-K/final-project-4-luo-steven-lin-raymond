@@ -150,9 +150,21 @@ public class Level {
   public void dig(int dx, int dy) {
     int newX = playerX + dx;
     int newY = playerY + dy;
-    if (newX >= 0 && newX < size &&   newY >= 0 && newY < size && map.get(newY)[newX] != SKY){
-      map.get(newY)[newX] = SKY;
-      movePlayer(dy, dx);
+    //if (newX >= 0 && newX < size &&   newY >= 0 && newY < size && map.get(newY)[newX] != SKY){
+    //  map.get(newY)[newX] = SKY;
+    //  movePlayer(dy, dx);
+    //}
+    if(map.get(newY)[newX] == DIAMOND) {
+      println("DIAMOND");
+    }
+    if(map.get(newY)[newX] == URANIUM) {
+      println("URANIUM");
+    }
+    if(map.get(newY)[newX] == TITANIUM) {
+      println("TITANIUM");
+    }
+    if(map.get(newY)[newX] == TIME) {
+      println("TIME");
     }
   }
   
@@ -165,12 +177,12 @@ public class Level {
       if (map.get(newY)[newX] != SKY){
         dig(dx, dy);
       }
-      else{
+      //else{
         map.get(playerY)[playerX] = SKY;
         playerX = newX;
         playerY = newY;
         map.get(playerY)[playerX] = PLAYER;
-      }
+      //}
     }
   }
   
