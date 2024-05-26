@@ -1,19 +1,28 @@
 public class Player {
-  private int[] coords;
+  private int x, y;
   private int range;
+  private int depth;
   
   public Player() {
-    coords = new int[] {level.size/2, level.size/2};
+    x = level.size/2;
+    y = level.size/2-1;
     range = 3;
   }
   
-  public int[] getCoords() {
-    return coords;
+  public int getX() {
+    return x;
   }
   
-  public void updatePosition(int dr, int dc) {
-    coords[0] += dr;
-    coords[1] += dc;
+  public void setX(int x) {
+    this.x = x;
+  }
+  
+  public int getY() {
+    return y;
+  }
+  
+  public void setY(int y) {
+    this.y = y;
   }
   
   public int getRange() {
@@ -22,6 +31,14 @@ public class Player {
   
   public void setRange(int r) {
     range = r;
+  }
+  
+  public int getDepth() {
+    return depth;
+  }
+  
+  public void addDepth() {
+    depth++;
   }
   
 }
