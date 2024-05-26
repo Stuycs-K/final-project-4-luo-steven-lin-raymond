@@ -12,8 +12,6 @@ public class Level {
   private final int PLAYER = 9999;
   
   private boolean[] inputs;
-  private int playerX;
-  private int playerY;
   
   
   public Level() {
@@ -24,41 +22,44 @@ public class Level {
       Arrays.fill(row, SKY);
       map.add(row);
     }
-    playerY = size/2 - 1;
-    playerX = size/2; 
     map.getLast()[size/2] = PLAYER;
     
     row = new int[size];
     Arrays.fill(row, DIRT);
     map.add(row);
     
-    double chance;
     for(int i = size/2+1; i < size; i++) {
-      row = new int[size];
-      for(int j = 0; j < row.length; j++) {
-        chance = Math.random();
-        if(chance < 0.95) {
-          row[j] = STONE;
-        }
-        else if(chance < 0.96) {
-          row[j] = DIAMOND;
-        }
-        else if(chance < 0.97) {
-          row[j] = URANIUM;
-        }
-        else if(chance < 0.98) {
-          row[j] = TITANIUM;
-        }
-        else {
-          row[j] = TIME;
-        }
-      }
+      row = generateRow();
       map.add(row);
     }
     
     //for(int[] x : map) {
     //  println(Arrays.toString(x));
     //}
+  }
+  
+  public int[] generateRow() {
+    int[] row = new int[size];
+    double chance;
+    for(int j = 0; j < row.length; j++) {
+      chance = Math.random();
+      if(chance < 0.95) {
+        row[j] = STONE;
+      }
+      else if(chance < 0.96) {
+        row[j] = DIAMOND;
+      }
+      else if(chance < 0.97) {
+        row[j] = URANIUM;
+      }
+      else if(chance < 0.98) {
+        row[j] = TITANIUM;
+      }
+      else {
+        row[j] = TIME;
+      }
+    }
+    return row;
   }
   
   public void display() {
@@ -148,29 +149,61 @@ public class Level {
   }
   
   public void dig(int dx, int dy) {
-    int newX = playerX + dx;
-    int newY = playerY + dy;
-    if (newX >= 0 && newX < size &&   newY >= 0 && newY < size && map.get(newY)[newX] != SKY){
-      map.get(newY)[newX] = SKY;
-      movePlayer(dy, dx);
+    int newX = player.getX() + dx;
+    int newY = player.getY() + dy;
+    //if (newX >= 0 && newX < size &&   newY >= 0 && newY < size && map.get(newY)[newX] != SKY){
+    //  map.get(newY)[newX] = SKY;
+    //  movePlayer(dy, dx);
+    //}
+    if(map.get(newY)[newX] == DIAMOND) {
+      println("DIAMOND");
+    }
+    if(map.get(newY)[newX] == URANIUM) {
+      println("URANIUM");
+    }
+    if(map.get(newY)[newX] == TITANIUM) {
+      println("TITANIUM");
+    }
+    if(map.get(newY)[newX] == TIME) {
+      println("TIME");
     }
   }
   
   private void movePlayer(int dy, int dx){
-    int newX = playerX + dx;
-    int newY = playerY + dy;
+    int newX = player.getX() + dx;
+    int newY = player.getY() + dy;
     
     
     if (newX >= 0 && newX < size && newY >= 0 && newY < size){
       if (map.get(newY)[newX] != SKY){
         dig(dx, dy);
       }
-      else{
-        map.get(playerY)[playerX] = SKY;
-        playerX = newX;
-        playerY = newY;
-        map.get(playerY)[playerX] = PLAYER;
+      //else{
+        map.get(player.getY())[player.getX()] = SKY;
+        player.setX(newX);
+        player.setY(newY);
+        map.get(newY)[newX] = PLAYER;
+      //}
+      if(dy == 1) {
+        player.addDepth();
+        println(player.getDepth());
       }
     }
+    else {
+      generate();
+    }
+    
   }
+  
+  private void generate() {
+    int[] newLevel = new int[size];
+    for(int i = 0; i < size/2; i++) {
+      map.removeFirst();
+      newLevel = generateRow();
+      map.add(newLevel);
+    }
+    player.setY(size/2-1);
+  }
+  
+  
 }
