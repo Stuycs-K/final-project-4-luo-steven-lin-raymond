@@ -10,15 +10,22 @@ void setup() {
   size(800, 800);
   textAlign(CENTER, CENTER);
   noStroke();
-  menu = new Menu();
   level = new Level();
-  player = new Player();
   timer = new Timer();
+  menu = new Menu();
+  player = new Player();
+}
+
+void reset() {
+  level = new Level();
+  timer = new Timer();
+  player.reset();
 }
 
 void draw() {
   if(game) {
     level.display();
+    timer.display();
   } else {
     menu.display();
   }

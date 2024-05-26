@@ -5,6 +5,8 @@
 ### 05/26/2024
 - Ore detection (no actions yet)
 - Infinite generation (eventually this will be finite)
+- Added timer restraint
+- Added digging up without going up
 
 ### 05/24/2024
 - Main button display is pretty
