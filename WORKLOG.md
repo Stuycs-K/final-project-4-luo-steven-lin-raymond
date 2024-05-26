@@ -2,6 +2,14 @@
 
 ## Steven Luo
 
+### 05/26/2024
+- Ore detection (no actions yet)
+- Infinite generation (eventually this will be finite)
+
+### 05/24/2024
+- Main button display is pretty
+- Basic movement works
+
 ### 05/23/2024
 - Made simple menu with a button to start the game
 - Made initial generation and display for the map.
@@ -16,10 +24,6 @@
 
 ## Raymond Lin
 
-### date x
-
-info
-
-### date y
-
-info
+### 05/24/2024
+- Completed key and mouse detection functions
+- Fixed "going down" for the player
