@@ -6,7 +6,7 @@ public class Timer {
   }
   
   public Timer() {
-    this(60);
+    this(5);
   }
   
   public boolean isPositive() {
@@ -14,10 +14,12 @@ public class Timer {
   }
   
   public void display() {
-    text("TIMER DISPLAYED", 100, 100);
+    fill(255);
+    text(time, 100, 100);
   }
   
-  private void tick() {
+  public void tick() {
+    time--;
   }
   
   public void setTime(int time) {

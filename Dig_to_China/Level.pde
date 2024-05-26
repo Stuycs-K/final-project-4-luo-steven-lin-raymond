@@ -12,6 +12,7 @@ public class Level {
   private final int PLAYER = 9999;
   
   private boolean[] inputs;
+  private int pastTime = millis();
   
   
   public Level() {
@@ -46,13 +47,13 @@ public class Level {
       if(chance < 0.95) {
         row[j] = STONE;
       }
-      else if(chance < 0.96) {
+      else if(chance < 0.97) {
         row[j] = DIAMOND;
       }
-      else if(chance < 0.97) {
+      else if(chance < 0.98) {
         row[j] = URANIUM;
       }
-      else if(chance < 0.98) {
+      else if(chance < 0.99) {
         row[j] = TITANIUM;
       }
       else {
@@ -63,6 +64,11 @@ public class Level {
   }
   
   public void display() {
+    if(!timer.isPositive()) {
+      game = !game;
+      reset();
+    }
+    
     background(0);
     rectMode(CORNER);
     int factor = width / size;
@@ -99,6 +105,13 @@ public class Level {
       }
     }
     timer.display();
+    
+    int current = millis();
+    if(current - pastTime >= 1000) {
+      //println("TICK");
+      timer.tick();
+      pastTime = current;
+    }
   }
   
   public boolean[] getInputs() {
@@ -141,13 +154,6 @@ public class Level {
     }
   }
   
-  public void mouseAction() {
-  }
-  
-  private void tick() {
-    keyAction();
-  }
-  
   public void dig(int dx, int dy) {
     int newX = player.getX() + dx;
     int newY = player.getY() + dy;
@@ -165,7 +171,8 @@ public class Level {
       println("TITANIUM");
     }
     if(map.get(newY)[newX] == TIME) {
-      println("TIME");
+      //println("TIME");
+      timer.setTime(timer.getTime() + 3);
     }
   }
   
@@ -186,7 +193,7 @@ public class Level {
       //}
       if(dy == 1) {
         player.addDepth();
-        println(player.getDepth());
+        //println(player.getDepth());
       }
     }
     else {
