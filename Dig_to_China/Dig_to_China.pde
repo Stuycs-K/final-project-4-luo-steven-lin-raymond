@@ -10,7 +10,8 @@ void setup() {
   size(800, 800);
   textAlign(CENTER, CENTER);
   noStroke();
-  reset();
+  level = new Level();
+  timer = new Timer();
   menu = new Menu();
   player = new Player();
 }
@@ -18,6 +19,7 @@ void setup() {
 void reset() {
   level = new Level();
   timer = new Timer();
+  player.reset();
 }
 
 void draw() {

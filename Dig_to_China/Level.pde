@@ -119,6 +119,9 @@ public class Level {
   }
   
   public void press(char key_) {
+    if (key_ == 'w' || key_ == 'W') {
+      inputs[0] = true;
+    }
     if (key_ == 'a' || key_ == 'A') {
       inputs[1] = true;
     }
@@ -131,6 +134,9 @@ public class Level {
   }
   
   public void release(char key_) {
+    if (key_ == 'w' || key_ == 'W') {
+      inputs[0] = false;
+    }
     if (key_ == 'a' || key_ == 'A') {
       inputs[1] = false;
     }
@@ -143,6 +149,9 @@ public class Level {
   }
   
   public void keyAction() {
+    if (inputs[0]) {
+      dig(0, -1);
+    }
     if (inputs[1]){
       movePlayer(0, -1);
     }
@@ -174,6 +183,7 @@ public class Level {
       //println("TIME");
       timer.setTime(timer.getTime() + 3);
     }
+    map.get(newY)[newX] = SKY;
   }
   
   private void movePlayer(int dy, int dx){

@@ -4,9 +4,13 @@ public class Player {
   private int depth;
   
   public Player() {
+    reset();
+    range = 3;
+  }
+  
+  public void reset() {
     x = level.size/2;
     y = level.size/2-1;
-    range = 3;
   }
   
   public int getX() {
