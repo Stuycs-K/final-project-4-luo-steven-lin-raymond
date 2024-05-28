@@ -181,7 +181,7 @@ public class Level {
     }
     if(map.get(newY)[newX] == TIME) {
       //println("TIME");
-      timer.setTime(timer.getTime() + 3);
+      timer.addTime(3);
     }
     map.get(newY)[newX] = SKY;
   }
