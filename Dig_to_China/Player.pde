@@ -24,6 +24,7 @@ public class Player {
   public void reset() {
     x = level.size/2;
     y = level.size/2-1;
+    println(inventory);
     inventory.clear();
     initializeInventory();
   }
