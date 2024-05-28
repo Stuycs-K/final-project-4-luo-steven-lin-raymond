@@ -1,16 +1,29 @@
+import java.util.HashMap;
+
 public class Player {
   private int x, y;
   private int range;
   private int depth;
+  private HashMap<String, Integer> inventory;
   
   public Player() {
     reset();
     range = 3;
+    initializeInventory();
+  }
+  
+  private void initializeInventory(){
+    inventory.put("DIAMOND", 0);
+    inventory.put("URANIUM", 0);
+    inventory.put("TITANIUM", 0);
+    inventory.put("TIME", 0);
   }
   
   public void reset() {
     x = level.size/2;
     y = level.size/2-1;
+    inventory.clear();
+    initializeInventory();
   }
   
   public int getX() {
@@ -43,6 +56,16 @@ public class Player {
   
   public void addDepth() {
     depth++;
+  }
+  
+  public void addOre(String oreType){
+    if (inventory.containsKey(oreType)){
+      inventory.put(oreType, inventory.get(oreType) + 1);
+    }
+  }
+  
+  public HashMap<String, Integer> getInventory(){
+    return inventory;
   }
   
 }
