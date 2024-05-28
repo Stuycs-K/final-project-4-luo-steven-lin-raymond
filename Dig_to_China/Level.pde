@@ -171,13 +171,16 @@ public class Level {
     //  movePlayer(dy, dx);
     //}
     if(map.get(newY)[newX] == DIAMOND) {
-      println("DIAMOND");
+      player.addOre("DIAMOND");
+      //println("DIAMOND");
     }
     if(map.get(newY)[newX] == URANIUM) {
-      println("URANIUM");
+      player.addOre("URANIUM");
+      //println("URANIUM");
     }
     if(map.get(newY)[newX] == TITANIUM) {
-      println("TITANIUM");
+      player.addOre("TITANIUM");
+      //println("TITANIUM");
     }
     if(map.get(newY)[newX] == TIME) {
       //println("TIME");

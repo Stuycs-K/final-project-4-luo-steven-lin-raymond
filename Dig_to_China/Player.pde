@@ -18,7 +18,6 @@ public class Player {
     inventory.put("DIAMOND", 0);
     inventory.put("URANIUM", 0);
     inventory.put("TITANIUM", 0);
-    inventory.put("TIME", 0);
   }
   
   public void reset() {
