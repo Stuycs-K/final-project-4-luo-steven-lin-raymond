@@ -19,7 +19,6 @@ public class Timer {
     int factor = 10;
     fill(200);
     rect(50, 50, maxTime * factor, 25);
-    println(maxTime);
     
     if(time < maxTime * 0.25) {
       fill(255, 0, 0);

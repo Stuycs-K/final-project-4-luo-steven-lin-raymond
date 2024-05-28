@@ -7,12 +7,14 @@ public class Player {
   private HashMap<String, Integer> inventory;
   
   public Player() {
-    reset();
     range = 3;
+    x = level.size/2;
+    y = level.size/2-1;
     initializeInventory();
   }
   
   private void initializeInventory(){
+    inventory = new HashMap<>();
     inventory.put("DIAMOND", 0);
     inventory.put("URANIUM", 0);
     inventory.put("TITANIUM", 0);
@@ -22,6 +24,7 @@ public class Player {
   public void reset() {
     x = level.size/2;
     y = level.size/2-1;
+    println(inventory);
     inventory.clear();
     initializeInventory();
   }
