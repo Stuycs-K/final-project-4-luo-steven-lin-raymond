@@ -24,8 +24,8 @@ public class Player {
     x = level.size/2;
     y = level.size/2-1;
     println(inventory);
-    inventory.clear();
-    initializeInventory();
+    //inventory.clear();
+    //initializeInventory();
   }
   
   public int getX() {

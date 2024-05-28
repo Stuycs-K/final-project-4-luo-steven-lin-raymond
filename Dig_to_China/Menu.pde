@@ -16,6 +16,14 @@ public class Menu {
     fill(255);
     text("MENU", width/2, 50);
     begin.display();
+    
+    fill(255);
+    HashMap<String, Integer> inv = player.getInventory();
+    textSize(24);
+    text("DIAMONDS: " + inv.get("DIAMOND"), width/2, height/2 - 50);
+    text("URANIUM: " + inv.get("URANIUM"), width/2, height/2);
+    text("TITANIUM: " + inv.get("TITANIUM"), width/2, height/2 + 50);
+    
   }
   
   public boolean[] getInputs() {
