@@ -33,14 +33,22 @@ void draw() {
 
 void keyPressed() {
   if(game) {
-    level.press(key);
+    if(key == CODED) {
+      level.press(keyCode, true);
+    } else {
+      level.press(key, false);
+    }
     level.keyAction();
   }
 }
 
 void keyReleased() {
   if(game) {
-    level.release(key);
+    if(key == CODED) {
+      level.release(keyCode, true);
+    } else {
+      level.release(key, false);
+    }
     level.keyAction();
   }
 }
