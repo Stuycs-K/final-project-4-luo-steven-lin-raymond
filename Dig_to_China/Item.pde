@@ -1,5 +1,5 @@
 public class Item {
-  private String name;
+  protected String name;
   private int rangeChange, timeChange;
   private int frequency;
   private int[] prices;
