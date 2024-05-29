@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 public class Player {
   private int x, y;
   private int range;
@@ -8,8 +6,8 @@ public class Player {
   
   public Player() {
     range = 3;
-    x = level.size/2;
-    y = level.size/2-1;
+    x = level.SIZE/2;
+    y = level.SIZE/2-1;
     initializeInventory();
   }
   
@@ -18,12 +16,14 @@ public class Player {
     inventory.put("DIAMOND", 0);
     inventory.put("URANIUM", 0);
     inventory.put("TITANIUM", 0);
+    inventory.put("TIME", 0);
+    inventory.put("BOMB", 1);
   }
   
   public void reset() {
-    x = level.size/2;
-    y = level.size/2-1;
-    println(inventory);
+    x = level.SIZE/2;
+    y = level.SIZE/2-1;
+    //println(inventory);
     //inventory.clear();
     //initializeInventory();
   }

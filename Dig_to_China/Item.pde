@@ -4,11 +4,19 @@ public class Item {
   private int frequency;
   private int[] prices;
   
-  public Item() { // parameters later
+  public Item(int rChange, int tChange, int freq, int[] prices) {
+    rangeChange = rChange;
+    timeChange = tChange;
+    frequency = freq;
+    this.prices = prices;
   }
   
   public String toString() {
     return name;
+  }
+  
+  public void modifyName(String n) {
+    name = n;
   }
   
   public int getRangeChange() {

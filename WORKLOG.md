@@ -2,6 +2,10 @@
 
 ## Steven Luo
 
+### 05/28/2024
+- Fixed inventory and made it displayable
+- Finished bomb function (limits not done yet)
+
 ### 05/26/2024
 - Ore detection (no actions yet)
 - Infinite generation (eventually this will be finite)
@@ -25,6 +29,10 @@
 
 
 ## Raymond Lin
+
+### 05/28/2024
+- Started inventory system
+- Started bomb item
 
 ### 05/24/2024
 - Completed key and mouse detection functions
