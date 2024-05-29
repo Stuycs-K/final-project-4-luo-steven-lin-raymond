@@ -1,8 +1,5 @@
-import java.util.LinkedList;
-import java.util.Arrays;
-
 public class Level {
-  public final int size = 40;
+  public final int SIZE = 40;
   
   private LinkedList<int[]> map = new LinkedList<>();
   private final int SKY = 0;
@@ -16,24 +13,22 @@ public class Level {
   
   private boolean[] inputs;
   private int pastTime = millis();
-  private Player player;
   
   public Level() {
     inputs = new boolean[6];
-    player = new Player();
     int[] row;
-    for(int i = 0; i < size/2; i++) {
-      row = new int[size];
+    for(int i = 0; i < SIZE/2; i++) {
+      row = new int[SIZE];
       Arrays.fill(row, SKY);
       map.add(row);
     }
-    map.getLast()[size/2] = PLAYER;
+    map.getLast()[SIZE/2] = PLAYER;
     
-    row = new int[size];
+    row = new int[SIZE];
     Arrays.fill(row, DIRT);
     map.add(row);
     
-    for(int i = size/2+1; i < size; i++) {
+    for(int i = SIZE/2+1; i < SIZE; i++) {
       row = generateRow();
       map.add(row);
     }
@@ -44,7 +39,7 @@ public class Level {
   }
   
   public int[] generateRow() {
-    int[] row = new int[size];
+    int[] row = new int[SIZE];
     double chance;
     for(int j = 0; j < row.length; j++) {
       chance = Math.random();
@@ -69,16 +64,15 @@ public class Level {
   
   public void display() {
     if(!timer.isPositive()) {
-      game = !game;
       reset();
     }
     
     background(0);
     rectMode(CORNER);
-    int factor = width / size;
+    int factor = width / SIZE;
     int tile;
-    for(int i = 0; i < size; i++) {
-      for(int j = 0; j < size; j++) {
+    for(int i = 0; i < SIZE; i++) {
+      for(int j = 0; j < SIZE; j++) {
         tile = map.get(i)[j];
         if(tile == SKY) {
           fill(0, 200, 255);
@@ -202,7 +196,7 @@ public class Level {
   public void dig(int dx, int dy) {
     int newX = player.getX() + dx;
     int newY = player.getY() + dy;
-    //if (newX >= 0 && newX < size &&   newY >= 0 && newY < size && map.get(newY)[newX] != SKY){
+    //if (newX >= 0 && newX < SIZE &&   newY >= 0 && newY < SIZE && map.get(newY)[newX] != SKY){
     //  map.get(newY)[newX] = SKY;
     //  movePlayer(dy, dx);
     //}
@@ -230,7 +224,7 @@ public class Level {
     int newY = player.getY() + dy;
     
     
-    if (newX >= 0 && newX < size && newY >= 0 && newY < size){
+    if (newX >= 0 && newX < SIZE && newY >= 0 && newY < SIZE){
       if (map.get(newY)[newX] != SKY){
         dig(dx, dy);
       }
@@ -257,13 +251,13 @@ public class Level {
   }
   
   private void generate() {
-    int[] newLevel = new int[size];
-    for(int i = 0; i < size/2; i++) {
+    int[] newLevel = new int[SIZE];
+    for(int i = 0; i < SIZE/2; i++) {
       map.removeFirst();
       newLevel = generateRow();
       map.add(newLevel);
     }
-    player.setY(size/2-1);
+    player.setY(SIZE/2-1);
   }
   
   
