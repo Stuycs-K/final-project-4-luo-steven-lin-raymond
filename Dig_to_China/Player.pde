@@ -6,23 +6,20 @@ public class Player {
   private int depth;
   private HashMap<String, Integer> inventory;
   
-  public Player() {
+ /* public Player() {
     range = 3;
     x = level.size/2;
     y = level.size/2-1;
     initializeInventory();
-  }
+  }*/
   
   private void initializeInventory(){
     inventory = new HashMap<>();
     inventory.put("DIAMOND", 0);
     inventory.put("URANIUM", 0);
     inventory.put("TITANIUM", 0);
-<<<<<<< HEAD
     inventory.put("TIME", 0);
     inventory.put("BOMB", 1);
-=======
->>>>>>> d076a88605a10543bcd2e81584377813db60c0d9
   }
   
   public void reset() {
@@ -64,7 +61,7 @@ public class Player {
   public void addDepth() {
     depth++;
   }
-  
+ 
   public void addOre(String oreType){
     if (inventory.containsKey(oreType)){
       inventory.put(oreType, inventory.get(oreType) + 1);

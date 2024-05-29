@@ -1,4 +1,4 @@
-public class Bomb extends Item{
+/* public class Bomb extends Item{
   public Bomb(){
     super();
     this.name = "Bomb";
@@ -19,4 +19,4 @@ public class Bomb extends Item{
     }
   }
 }
-      
+*/
