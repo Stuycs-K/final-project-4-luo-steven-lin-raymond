@@ -8,7 +8,6 @@ Timer timer;
 
 void setup() {
   size(800, 800);
-  textAlign(CENTER, CENTER);
   noStroke();
   level = new Level();
   timer = new Timer();

@@ -11,6 +11,7 @@ public class Menu {
   }
   
   public void display() {
+    textAlign(CENTER, CENTER);
     background(0);
     textSize(36);
     fill(255);

@@ -68,6 +68,7 @@ public class Level {
       reset();
     }
     
+    textAlign(LEFT);
     background(0);
     rectMode(CORNER);
     int factor = width / SIZE;
@@ -104,6 +105,8 @@ public class Level {
       }
     }
     timer.display();
+    
+    bomb.display();
     
     int current = millis();
     if(current - pastTime >= 1000) {

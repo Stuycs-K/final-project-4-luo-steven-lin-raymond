@@ -1,10 +1,16 @@
 public class Bomb extends Item{
+  
   public Bomb(){
-    super(0, 0, 0, new int[] {100, 200, 300});
+    super(1, new int[] {100, 200, 300});
     modifyName("Bomb");
   }
   
   public void use(){
+    HashMap<String, Integer> inv = player.getInventory();
+    if(inv.get("BOMB") <= 0) {
+      return;
+    }
+    inv.put("BOMB", inv.get("BOMB")-1);
     int playerX = player.getX();
     int playerY = player.getY();
     int size = level.SIZE;
@@ -14,5 +20,14 @@ public class Bomb extends Item{
       }
     }
     level.movePlayer(2, 0);
+  }
+  
+  public void display() {
+    HashMap<String, Integer> inv = player.getInventory();
+    fill(255);
+    rect(width-160, 70, 150, 50);
+    fill(255, 0, 0);
+    textSize(16);
+    text("Number of Bombs: " + inv.get("BOMB"), width-150, 100);
   }
 }
