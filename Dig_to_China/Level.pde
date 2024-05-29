@@ -13,6 +13,7 @@ public class Level {
   
   private boolean[] inputs;
   private int pastTime = millis();
+  private Bomb bomb = new Bomb();
   
   public Level() {
     inputs = new boolean[6];
@@ -144,6 +145,9 @@ public class Level {
       if (key_ == 'd' || key_ == 'D') {
         inputs[3] = true;
       }
+      if (key_ == 'b' || key_ == 'B') {
+        inputs[4] = true;
+      }
     }
   }
   
@@ -180,7 +184,7 @@ public class Level {
   
   public void keyAction() {
     if (inputs[0]) {
-      dig(0, -1);
+      dig(player.getX(), player.getY()-1);
     }
     if (inputs[1]){
       movePlayer(0, -1);
@@ -191,15 +195,16 @@ public class Level {
     if (inputs[3]){
       movePlayer(0, 1);
     }
+    if (inputs[4]) {
+      bomb.use();
+      inputs[4] = false;
+    }
   }
   
-  public void dig(int dx, int dy) {
-    int newX = player.getX() + dx;
-    int newY = player.getY() + dy;
-    //if (newX >= 0 && newX < SIZE &&   newY >= 0 && newY < SIZE && map.get(newY)[newX] != SKY){
-    //  map.get(newY)[newX] = SKY;
-    //  movePlayer(dy, dx);
-    //}
+  public void dig(int newX, int newY) {
+    if(map.get(newY)[newX] == PLAYER) {
+       return;
+    }
     if(map.get(newY)[newX] == DIAMOND) {
       player.addOre("DIAMOND");
       //println("DIAMOND");
@@ -223,10 +228,9 @@ public class Level {
     int newX = player.getX() + dx;
     int newY = player.getY() + dy;
     
-    
     if (newX >= 0 && newX < SIZE && newY >= 0 && newY < SIZE){
       if (map.get(newY)[newX] != SKY){
-        dig(dx, dy);
+        dig(newX, newY);
       }
       //else{
         map.get(player.getY())[player.getX()] = SKY;
@@ -242,12 +246,6 @@ public class Level {
     else {
       generate();
     } 
-  }
-  
-  public void destroyBlock(int y, int x){
-    if (map.get(y)[x] != PLAYER){
-      map.get(y)[x] = SKY;
-    }
   }
   
   private void generate() {
