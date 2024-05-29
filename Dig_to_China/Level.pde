@@ -202,6 +202,10 @@ public class Level {
   }
   
   public void dig(int newX, int newY) {
+    if(newX < 0 || newX >= 40 || newY < 0 || newY >= 40) {
+      return;
+    } 
+    
     if(map.get(newY)[newX] == PLAYER) {
        return;
     }
