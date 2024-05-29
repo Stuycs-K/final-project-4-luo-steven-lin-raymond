@@ -18,6 +18,11 @@ public class Player {
     inventory.put("DIAMOND", 0);
     inventory.put("URANIUM", 0);
     inventory.put("TITANIUM", 0);
+<<<<<<< HEAD
+    inventory.put("TIME", 0);
+    inventory.put("BOMB", 1);
+=======
+>>>>>>> d076a88605a10543bcd2e81584377813db60c0d9
   }
   
   public void reset() {

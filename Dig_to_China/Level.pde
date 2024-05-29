@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Arrays;
+
 public class Level {
   public final int size = 40;
   
@@ -13,10 +16,11 @@ public class Level {
   
   private boolean[] inputs;
   private int pastTime = millis();
-  
+  private Player player;
   
   public Level() {
     inputs = new boolean[6];
+    player = new Player();
     int[] row;
     for(int i = 0; i < size/2; i++) {
       row = new int[size];
@@ -243,8 +247,13 @@ public class Level {
     }
     else {
       generate();
+    } 
+  }
+  
+  public void destroyBlock(int y, int x){
+    if (map.get(y)[x] != PLAYER){
+      map.get(y)[x] = SKY;
     }
-    
   }
   
   private void generate() {
