@@ -4,12 +4,12 @@ public class Player {
   private int depth;
   private HashMap<String, Integer> inventory;
   
- /* public Player() {
+ public Player() {
     range = 3;
     x = level.SIZE/2;
     y = level.SIZE/2-1;
     initializeInventory();
-  }*/
+  }
   
   private void initializeInventory(){
     inventory = new HashMap<>();

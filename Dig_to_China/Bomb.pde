@@ -1,4 +1,4 @@
-/* public class Bomb extends Item{
+public class Bomb extends Item{
   public Bomb(){
     super(0, 0, 0, new int[] {100, 200, 300});
     modifyName("Bomb");
@@ -16,4 +16,3 @@
     level.movePlayer(2, 0);
   }
 }
-*/
