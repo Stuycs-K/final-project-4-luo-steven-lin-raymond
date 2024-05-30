@@ -235,7 +235,7 @@ public class Level {
     int newX = player.getX() + dx;
     int newY = player.getY() + dy;
     
-    if (newX >= 0 && newX < SIZE && newY >= 0 && newY < SIZE){
+    if (newX >= 0 && newX < SIZE && newY >= 0 && newY < SIZE - 5){
       if (map.get(newY)[newX] != SKY){
         dig(newX, newY);
       }
@@ -262,7 +262,7 @@ public class Level {
       newLevel = generateRow();
       map.add(newLevel);
     }
-    player.setY(SIZE/2-1);
+    player.setY(SIZE/2-6);
   }
   
   
