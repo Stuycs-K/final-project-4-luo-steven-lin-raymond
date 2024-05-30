@@ -50,10 +50,10 @@ public class Level {
       else if(chance < 0.97) {
         row[j] = DIAMOND;
       }
-      else if(chance < 0.98) {
+      else if(chance < 0.985) {
         row[j] = URANIUM;
       }
-      else if(chance < 0.99) {
+      else if(chance < 0.995) {
         row[j] = TITANIUM;
       }
       else {
@@ -261,8 +261,8 @@ public class Level {
       map.removeFirst();
       newLevel = generateRow();
       map.add(newLevel);
+      player.setY(player.getY()-1);
     }
-    player.setY(SIZE/2-6);
   }
   
   

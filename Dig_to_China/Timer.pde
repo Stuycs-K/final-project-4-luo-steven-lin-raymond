@@ -8,7 +8,7 @@ public class Timer {
   }
   
   public Timer() {
-    this(5, 30);
+    this(5, 10);
   }
   
   public boolean isPositive() {
@@ -48,8 +48,14 @@ public class Timer {
     return time;
   }
   
+  public int getMaxTime() {
+    return maxTime;
+  }
+  
   public void setMaxTime(int mTime) {
-    maxTime = mTime;
+    if(mTime <= 50) {
+      maxTime = mTime;
+    }
   }
   
 }
