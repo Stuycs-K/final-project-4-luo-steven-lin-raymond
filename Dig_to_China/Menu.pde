@@ -2,8 +2,11 @@ public class Menu {
   private Button begin;
   private Button startTimeExtend;
   private boolean[] inputs;
+  TimeModifier timeMod;
   
   public Menu() {
+    timeMod = new TimeModifier();
+    
     begin = new Button(width/2, height - 100, 200, 50);
     begin.setText("Begin Game");
     
@@ -57,6 +60,7 @@ public class Menu {
     }
     if(startTimeExtend.isMouseOver(mouseX, mouseY)) {
       startTimeExtend.release();
+      timeMod.extendStartingTime(3);
     }
   }
 }

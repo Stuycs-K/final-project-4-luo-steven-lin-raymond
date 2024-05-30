@@ -151,6 +151,9 @@ public class Level {
       if (key_ == 'b' || key_ == 'B') {
         inputs[4] = true;
       }
+      if (key_ == 'q' || key_ == 'Q') {
+        inputs[5] = true;
+      }
     }
   }
   
@@ -201,6 +204,10 @@ public class Level {
     if (inputs[4]) {
       bomb.use();
       inputs[4] = false;
+    }
+    if (inputs[5]) {
+      reset();
+      inputs[5] = false;
     }
   }
   
