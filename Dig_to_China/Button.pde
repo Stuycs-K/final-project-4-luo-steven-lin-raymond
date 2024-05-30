@@ -3,8 +3,8 @@ public class Button {
   private int x, y, w, h;
   private color textColor = color(0);
   private color bgColor = color(255);
-  private color altTextColor = color(255);
-  private color altBgColor = color(0);
+  private color altTextColor = color(0);
+  private color altBgColor = color(0, 255, 0);
   private boolean isPressed = false;
   
   public Button(int x, int y, int w, int h) {

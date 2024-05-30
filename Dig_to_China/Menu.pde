@@ -1,12 +1,15 @@
 public class Menu {
   private Button begin;
+  private Button startTimeExtend;
   private boolean[] inputs;
   
   public Menu() {
     begin = new Button(width/2, height - 100, 200, 50);
     begin.setText("Begin Game");
-    begin.setBgColor(color(255), color(0, 255, 0));
-    begin.setTextColor(color(0), color(0));
+    
+    startTimeExtend = new Button(width/2 - 100, height - 200, 200, 50);
+    startTimeExtend.setText("+3s to starting\nCost: ?");
+    
     inputs = new boolean[10];
   }
   
@@ -20,15 +23,17 @@ public class Menu {
     
     fill(255);
     textSize(24);
-    text("Max Depth: " + player.getMaxDepth(), width/2, height/2 - 100);
-    text("Last Depth: " + player.getPrevDepth(), width/2, height/2 - 50);
+    text("Max Depth: " + player.getMaxDepth(), width/2, height/2 - 200);
+    text("Last Depth: " + player.getPrevDepth(), width/2, height/2 - 150);
     
     fill(255);
-    HashMap<String, Integer> inv = player.getInventory();
     textSize(24);
-    text("Diamond Amount: " + inv.get("DIAMOND"), width/2, height/2);
-    text("Uranium Amount: " + inv.get("URANIUM"), width/2, height/2 + 50);
-    text("Titanium Amount: " + inv.get("TITANIUM"), width/2, height/2 + 100);
+    HashMap<String, Integer> inv = player.getInventory();
+    text("Diamond Amount: " + inv.get("DIAMOND"), width/2, height/2 - 50);
+    text("Uranium Amount: " + inv.get("URANIUM"), width/2, height/2);
+    text("Titanium Amount: " + inv.get("TITANIUM"), width/2, height/2 + 50);
+    
+    startTimeExtend.display();
     
   }
   
@@ -40,12 +45,18 @@ public class Menu {
     if(begin.isMouseOver(mouseX, mouseY)) {
       begin.press();
     }
+    if(startTimeExtend.isMouseOver(mouseX, mouseY)) {
+      startTimeExtend.press();
+    }
   }
   
   public void release() {
     if (begin.isPressed() && begin.isMouseOver(mouseX, mouseY)) {
       game = true;
       begin.release();
+    }
+    if(startTimeExtend.isMouseOver(mouseX, mouseY)) {
+      startTimeExtend.release();
     }
   }
 }
