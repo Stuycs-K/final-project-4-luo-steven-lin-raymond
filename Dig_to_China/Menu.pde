@@ -19,11 +19,16 @@ public class Menu {
     begin.display();
     
     fill(255);
+    textSize(24);
+    text("Max Depth: " + player.getMaxDepth(), width/2, height/2 - 100);
+    text("Last Depth: " + player.getPrevDepth(), width/2, height/2 - 50);
+    
+    fill(255);
     HashMap<String, Integer> inv = player.getInventory();
     textSize(24);
-    text("DIAMONDS: " + inv.get("DIAMOND"), width/2, height/2 - 50);
-    text("URANIUM: " + inv.get("URANIUM"), width/2, height/2);
-    text("TITANIUM: " + inv.get("TITANIUM"), width/2, height/2 + 50);
+    text("Diamond Amount: " + inv.get("DIAMOND"), width/2, height/2);
+    text("Uranium Amount: " + inv.get("URANIUM"), width/2, height/2 + 50);
+    text("Titanium Amount: " + inv.get("TITANIUM"), width/2, height/2 + 100);
     
   }
   

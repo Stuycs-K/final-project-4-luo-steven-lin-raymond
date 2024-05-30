@@ -1,7 +1,7 @@
 public class Player {
   private int x, y;
   private int range;
-  private int depth;
+  private int depth, prevDepth, maxDepth;
   private HashMap<String, Integer> inventory;
   
  public Player() {
@@ -23,6 +23,9 @@ public class Player {
   public void reset() {
     x = level.SIZE/2;
     y = level.SIZE/2-1;
+    maxDepth = Math.max(depth, maxDepth);
+    prevDepth = depth;
+    depth = 0;
     //println(inventory);
     //inventory.clear();
     //initializeInventory();
@@ -58,6 +61,14 @@ public class Player {
   
   public void addDepth() {
     depth++;
+  }
+  
+  public int getMaxDepth() {
+    return maxDepth;
+  }
+  
+  public int getPrevDepth() {
+    return prevDepth;
   }
  
   public void addOre(String oreType){
