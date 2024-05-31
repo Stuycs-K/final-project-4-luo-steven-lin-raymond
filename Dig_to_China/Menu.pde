@@ -9,13 +9,15 @@ public class Menu {
     timeMod = new TimeModifier();
     
     begin = new Button(width/2, height - 100, 200, 50);
-    begin.setText("Begin Game");
+    begin.text = "Begin Game";
+    begin.hover1BgColor = color(100);
+    begin.hover1TextColor = color(0);
     
     startTimeExtend = new Button(width/2 - 150, height - 200, 200, 50);
-    startTimeExtend.setText("+3 seconds to start\nCost: ?");
+    startTimeExtend.text = "+3 seconds to start\nCost: ?";
     
     maxTimeExtend = new Button(width/2 + 150, height - 200, 200, 50);
-    maxTimeExtend.setText("+3 seconds to max\nCost: ?");
+    maxTimeExtend.text = "+3 seconds to max\nCost: ?";
     
     inputs = new boolean[10];
   }
@@ -68,13 +70,17 @@ public class Menu {
     }
     if(startTimeExtend.isMouseOver(mouseX, mouseY)) {
       startTimeExtend.release();
-      timeMod.extendStartingTime(3);
-      // ADD COST
+      if(timeMod.fulfilledStart()) {
+        timeMod.applyStart(3);
+      }
     }
     if(maxTimeExtend.isMouseOver(mouseX, mouseY)) {
       maxTimeExtend.release();
-      timeMod.extendMaxTime(3);
-      // ADD COST
+      if(timeMod.fulfilledMax()) {
+        timeMod.applyMax(3);
+      }
+      else {
+      }
     }
   }
 }

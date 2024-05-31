@@ -257,7 +257,7 @@ public class Level {
         //println(player.getDepth());
       }
     }
-    else {
+    else if (newY >= SIZE - 5) {
       generate();
     } 
   }
