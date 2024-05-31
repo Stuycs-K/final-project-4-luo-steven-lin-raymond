@@ -1,6 +1,7 @@
 public class Menu {
   private Button begin;
   private Button startTimeExtend;
+  private Button maxTimeExtend;
   private boolean[] inputs;
   TimeModifier timeMod;
   
@@ -10,8 +11,11 @@ public class Menu {
     begin = new Button(width/2, height - 100, 200, 50);
     begin.setText("Begin Game");
     
-    startTimeExtend = new Button(width/2 - 100, height - 200, 200, 50);
-    startTimeExtend.setText("+3s to starting\nCost: ?");
+    startTimeExtend = new Button(width/2 - 150, height - 200, 200, 50);
+    startTimeExtend.setText("+3 seconds to start\nCost: ?");
+    
+    maxTimeExtend = new Button(width/2 + 150, height - 200, 200, 50);
+    maxTimeExtend.setText("+3 seconds to max\nCost: ?");
     
     inputs = new boolean[10];
   }
@@ -37,6 +41,7 @@ public class Menu {
     text("Titanium Amount: " + inv.get("TITANIUM"), width/2, height/2 + 50);
     
     startTimeExtend.display();
+    maxTimeExtend.display();
     
   }
   
@@ -51,6 +56,9 @@ public class Menu {
     if(startTimeExtend.isMouseOver(mouseX, mouseY)) {
       startTimeExtend.press();
     }
+    if(maxTimeExtend.isMouseOver(mouseX, mouseY)) {
+      maxTimeExtend.press();
+    }
   }
   
   public void release() {
@@ -61,6 +69,12 @@ public class Menu {
     if(startTimeExtend.isMouseOver(mouseX, mouseY)) {
       startTimeExtend.release();
       timeMod.extendStartingTime(3);
+      // ADD COST
+    }
+    if(maxTimeExtend.isMouseOver(mouseX, mouseY)) {
+      maxTimeExtend.release();
+      timeMod.extendMaxTime(3);
+      // ADD COST
     }
   }
 }
