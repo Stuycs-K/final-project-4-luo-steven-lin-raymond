@@ -12,4 +12,18 @@ public class TimeModifier extends Item {
     timer.addTime(amount);
   }
   
+  public boolean fulfilledStart() {
+    HashMap<String, Integer> inv = player.getInventory();
+    return inv.get("DIAMOND") >= 4;
+  }
+  
+  public void fulfillStart() {
+    HashMap<String, Integer> inv = player.getInventory();
+    inv.put("DIAMOND", inv.get("DIAMOND")-4);
+  }
+  
+  public boolean fulfilledMax() {
+    return true;
+  }
+  
 }

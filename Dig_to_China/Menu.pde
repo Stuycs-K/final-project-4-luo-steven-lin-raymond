@@ -10,6 +10,7 @@ public class Menu {
     
     begin = new Button(width/2, height - 100, 200, 50);
     begin.setText("Begin Game");
+    begin.set
     
     startTimeExtend = new Button(width/2 - 150, height - 200, 200, 50);
     startTimeExtend.setText("+3 seconds to start\nCost: ?");
@@ -68,13 +69,17 @@ public class Menu {
     }
     if(startTimeExtend.isMouseOver(mouseX, mouseY)) {
       startTimeExtend.release();
-      timeMod.extendStartingTime(3);
-      // ADD COST
+      if(timeMod.fulfilledStart()) {
+        timeMod.extendStartingTime(3);
+      }
     }
     if(maxTimeExtend.isMouseOver(mouseX, mouseY)) {
       maxTimeExtend.release();
-      timeMod.extendMaxTime(3);
-      // ADD COST
+      if(timeMod.fulfilledMax()) {
+        timeMod.extendMaxTime(3);
+      }
+      else {
+      }
     }
   }
 }
