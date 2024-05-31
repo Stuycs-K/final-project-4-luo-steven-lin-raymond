@@ -71,13 +71,13 @@ public class Menu {
     if(startTimeExtend.isMouseOver(mouseX, mouseY)) {
       startTimeExtend.release();
       if(timeMod.fulfilledStart()) {
-        timeMod.extendStartingTime(3);
+        timeMod.applyStart(3);
       }
     }
     if(maxTimeExtend.isMouseOver(mouseX, mouseY)) {
       maxTimeExtend.release();
       if(timeMod.fulfilledMax()) {
-        timeMod.extendMaxTime(3);
+        timeMod.applyMax(3);
       }
       else {
       }

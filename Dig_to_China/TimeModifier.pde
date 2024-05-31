@@ -4,12 +4,17 @@ public class TimeModifier extends Item {
     super(0, new int[] {100, 200, 300});
   }
   
-  public void extendMaxTime(int amount) {
+  public void applyMax(int amount) {
     timer.setMaxTime(timer.getMaxTime() + amount);
+    HashMap<String, Integer> inv = player.getInventory();
+    inv.put("DIAMOND", inv.get("DIAMOND")-10);
+    inv.put("URANIUM", inv.get("URANIUM")-2);
   }
   
-  public void extendStartingTime(int amount) {
+  public void applyStart(int amount) {
     timer.addTime(amount);
+    HashMap<String, Integer> inv = player.getInventory();
+    inv.put("DIAMOND", inv.get("DIAMOND")-4);
   }
   
   public boolean fulfilledStart() {
@@ -17,13 +22,9 @@ public class TimeModifier extends Item {
     return inv.get("DIAMOND") >= 4;
   }
   
-  public void fulfillStart() {
-    HashMap<String, Integer> inv = player.getInventory();
-    inv.put("DIAMOND", inv.get("DIAMOND")-4);
-  }
-  
   public boolean fulfilledMax() {
-    return true;
+    HashMap<String, Integer> inv = player.getInventory();
+    return inv.get("DIAMOND") >= 10 && inv.get("URANIUM") >= 2;
   }
   
 }
