@@ -9,14 +9,15 @@ public class Menu {
     timeMod = new TimeModifier();
     
     begin = new Button(width/2, height - 100, 200, 50);
-    begin.setText("Begin Game");
-    begin.set
+    begin.text = "Begin Game";
+    begin.hover1BgColor = color(100);
+    begin.hover1TextColor = color(0);
     
     startTimeExtend = new Button(width/2 - 150, height - 200, 200, 50);
-    startTimeExtend.setText("+3 seconds to start\nCost: ?");
+    startTimeExtend.text = "+3 seconds to start\nCost: ?";
     
     maxTimeExtend = new Button(width/2 + 150, height - 200, 200, 50);
-    maxTimeExtend.setText("+3 seconds to max\nCost: ?");
+    maxTimeExtend.text = "+3 seconds to max\nCost: ?";
     
     inputs = new boolean[10];
   }

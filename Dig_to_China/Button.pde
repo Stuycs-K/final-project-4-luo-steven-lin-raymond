@@ -18,22 +18,6 @@ public class Button {
     this.h = h;
   }
   
-  public void setText(String text) {
-    this.text = text;
-  }
-  
-  public void setBgColor(color dBg, color h1Bg, color h2Bg, color pBg) {
-    this.defaultBgColor = dBg;
-    this.hover1BgColor = h1Bg;
-    this.pressedBgColor = pBg;
-  }
-  
-  public void setTextColor(color dT, color h1T, color h2Bg, color pT) {
-    this.defaultTextColor = dT;
-    this.hover1BgColor = h1
-    this.pressedTextColor = pT;
-  }
-  
   //public Button(int x, int y, int w, int h, String name) {
   //  this(x, y, w, h);
   //  this.text = name;
@@ -55,7 +39,12 @@ public class Button {
       fill(pressedBgColor);
     }
     else if(isMouseOver(mouseX, mouseY)) {
-      fill(hover1BgColor);
+      if(fulfilled()) {
+        fill(hover2BgColor);
+      }
+      else {
+        fill(hover1BgColor);
+      }
     }
     else {
       fill(defaultBgColor);
@@ -67,7 +56,12 @@ public class Button {
       fill(pressedTextColor);
     }
     else if(isMouseOver(mouseX, mouseY)) {
-      fill(hover1TextColor);
+      if(fulfilled()) {
+        fill(hover2TextColor);
+      }
+      else {
+        fill(hover1TextColor);
+      }
     }
     else {
       fill(defaultTextColor);
@@ -90,5 +84,9 @@ public class Button {
   
   public boolean isPressed() {
     return isPressed;
+  }
+  
+  private boolean fulfilled() {
+    return false;
   }
 }
