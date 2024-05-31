@@ -4,3 +4,13 @@ THIS DOCUMENT IS REQUIRED
 ## Group Info
 ## Overview
 ## Instructions
+
+In the menu:
+- Press the buttons displaying a modifier with a cost to buy that modifier.
+- Press "Begin Game" to begin the game.
+
+In the game:
+- Use the A, S, D (or their corresponding arrow keys) to move the player and dig in that direction.
+- Use the W (or UP arrow key) to dig up. The player will not move.
+- Use B to bomb a certain area. The player will automatically drop.
+- Use Q to quit the current digging session.
