@@ -2,6 +2,15 @@
 
 ## Steven Luo
 
+### 05/30/2024
+- Updated generation so that it occurs before the player reaches the bottom
+- Time "ore" spawns less frequently + maxTime decreased
+- Displays updated
+- Started "extend starting time" modifier
+
+### 05/29/2024
+- Added bomb limits
+
 ### 05/28/2024
 - Fixed inventory and made it displayable
 - Finished bomb function (limits not done yet)
