@@ -1,3 +1,5 @@
+// WARNING: THIS CLASS IS ABOUT TO BE DEPRECATED.
+
 public class Item {
   private String name;
   private int frequency;

@@ -1,5 +1,7 @@
 public class Bomb extends Item{
   
+  private Button buy;
+  
   public Bomb(){
     super(1, new int[] {100, 200, 300});
     modifyName("Bomb");
