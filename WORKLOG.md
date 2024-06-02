@@ -2,6 +2,13 @@
 
 ## Steven Luo
 
+### 06/02/2024
+- The buttons now change color depending on availability of item
+
+### 05/31/2024
+- Began shop system with buttons in menu
+- Overhauled how buttons work
+
 ### 05/30/2024
 - Updated generation so that it occurs before the player reaches the bottom
 - Time "ore" spawns less frequently + maxTime decreased
