@@ -10,6 +10,7 @@ public class Button {
   private color pressedTextColor = color(255);
   private color pressedBgColor = color(0);
   private boolean isPressed = false;
+  private boolean fulfilled = false;
   
   public Button(int x, int y, int w, int h) {
     this.x = x;
@@ -39,7 +40,7 @@ public class Button {
       fill(pressedBgColor);
     }
     else if(isMouseOver(mouseX, mouseY)) {
-      if(fulfilled()) {
+      if(fulfilled) {
         fill(hover2BgColor);
       }
       else {
@@ -56,7 +57,7 @@ public class Button {
       fill(pressedTextColor);
     }
     else if(isMouseOver(mouseX, mouseY)) {
-      if(fulfilled()) {
+      if(fulfilled) {
         fill(hover2TextColor);
       }
       else {
@@ -84,9 +85,5 @@ public class Button {
   
   public boolean isPressed() {
     return isPressed;
-  }
-  
-  private boolean fulfilled() {
-    return false;
   }
 }
