@@ -34,7 +34,7 @@ public class Menu {
     text("Uranium Amount: " + inv.get("URANIUM"), width/2, height/2 - 150);
     text("Titanium Amount: " + inv.get("TITANIUM"), width/2, height/2 - 100);
     
-    timeMod.display();
+    shop.display();
     
   }
   
@@ -54,6 +54,6 @@ public class Menu {
       game = true;
       begin.release();
     }
-    timeMod.release();
+    shop.release();
   }
 }
