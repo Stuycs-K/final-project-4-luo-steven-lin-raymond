@@ -82,13 +82,14 @@ public class Shop {
   }
   
   public void applyStart(int amount) {
-    timer.addTime(amount);
+    timer.addStartTime(amount);
     HashMap<String, Integer> inv = player.getInventory();
     inv.put("DIAMOND", inv.get("DIAMOND")-4);
   }
   
   public void applyDigUpgrade(){
     digUpgradeApplied = true;
+    player.range++;
     HashMap<String, Integer> inv = player.getInventory();
     inv.put("DIAMOND", inv.get("DIAMOND") - 10);
     inv.put("URANIUM", inv.get("URANIUM") - 5);

@@ -216,12 +216,12 @@ public class Level {
       return;
     } 
     
-    int[][] positions = {{newX, newY}, {newX + 1, newY}, {newX, newY - 1}, {newX + 1, newY - 1}};
+    int[][] positions = {{newX, newY}, {newX + player.range, newY}, {newX, newY - player.range}, {newX + player.range, newY - player.range}};
     
     for (int[] pos : positions){
       int x = pos[0];
       int y = pos[1];
-      if (x >= 0 && x < 40 && y >= 0 && y < 40) {
+      if (x >= 0 && x < SIZE && y >= 0 && y < SIZE) {
         if (map.get(y)[x] == DIAMOND) {
           player.addOre("DIAMOND");
         } else if (map.get(y)[x] == URANIUM) {

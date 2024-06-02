@@ -5,7 +5,7 @@ public class Player {
   private HashMap<String, Integer> inventory;
   
  public Player() {
-    range = 3;
+    range = 0;
     x = level.SIZE/2;
     y = level.SIZE/2-1;
     initializeInventory();

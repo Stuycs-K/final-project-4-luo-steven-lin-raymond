@@ -1,9 +1,11 @@
 public class Timer {
   private int time;
+  private int startTime;
   private int maxTime;
   
   public Timer(int time, int maxTime) {
     this.time = time;
+    startTime = time;
     this.maxTime = maxTime;
   }
   
@@ -32,6 +34,10 @@ public class Timer {
     rect(50, 50, time * factor, 25);
   }
   
+  public void reset() {
+    time = startTime;
+  }
+  
   public void tick() {
     time--;
   }
@@ -41,6 +47,14 @@ public class Timer {
       time = maxTime;
     } else {
       time += dt;
+    }
+  }
+  
+  public void addStartTime(int dt) {
+    if(startTime + dt > maxTime) {
+      startTime = maxTime;
+    } else {
+      startTime += dt;
     }
   }
   

@@ -18,7 +18,7 @@ void setup() {
 void reset() {
   game = false;
   level = new Level();
-  timer = new Timer();
+  timer.reset();
   player.reset();
 }
 
