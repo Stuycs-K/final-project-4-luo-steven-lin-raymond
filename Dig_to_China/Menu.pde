@@ -1,7 +1,5 @@
 public class Menu {
   private Button begin;
-  private Button startTimeExtend;
-  private Button maxTimeExtend;
   private boolean[] inputs;
   TimeModifier timeMod;
   
@@ -12,12 +10,6 @@ public class Menu {
     begin.text = "Begin Game";
     begin.hover1BgColor = color(100);
     begin.hover1TextColor = color(0);
-    
-    startTimeExtend = new Button(width/2 - 150, height - 200, 200, 50);
-    startTimeExtend.text = "+3 seconds to start\nCost: ?";
-    
-    maxTimeExtend = new Button(width/2 + 150, height - 200, 200, 50);
-    maxTimeExtend.text = "+3 seconds to max\nCost: ?";
     
     inputs = new boolean[10];
   }
@@ -42,8 +34,7 @@ public class Menu {
     text("Uranium Amount: " + inv.get("URANIUM"), width/2, height/2);
     text("Titanium Amount: " + inv.get("TITANIUM"), width/2, height/2 + 50);
     
-    startTimeExtend.display();
-    maxTimeExtend.display();
+    timeMod.display();
     
   }
   
@@ -55,12 +46,7 @@ public class Menu {
     if(begin.isMouseOver(mouseX, mouseY)) {
       begin.press();
     }
-    if(startTimeExtend.isMouseOver(mouseX, mouseY)) {
-      startTimeExtend.press();
-    }
-    if(maxTimeExtend.isMouseOver(mouseX, mouseY)) {
-      maxTimeExtend.press();
-    }
+    timeMod.press();
   }
   
   public void release() {
@@ -68,19 +54,6 @@ public class Menu {
       game = true;
       begin.release();
     }
-    if(startTimeExtend.isMouseOver(mouseX, mouseY)) {
-      startTimeExtend.release();
-      if(timeMod.fulfilledStart()) {
-        timeMod.applyStart(3);
-      }
-    }
-    if(maxTimeExtend.isMouseOver(mouseX, mouseY)) {
-      maxTimeExtend.release();
-      if(timeMod.fulfilledMax()) {
-        timeMod.applyMax(3);
-      }
-      else {
-      }
-    }
+    timeMod.release();
   }
 }
