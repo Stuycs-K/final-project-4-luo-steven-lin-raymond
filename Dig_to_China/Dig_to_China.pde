@@ -1,66 +1,68 @@
-import java.util.*;
-
-boolean game = false;
-Menu menu;
-Level level;
-Player player;
-Timer timer;
-
-void setup() {
-  size(800, 800);
-  noStroke();
-  level = new Level();
-  timer = new Timer();
-  menu = new Menu();
-  player = new Player();
-}
-
-void reset() {
-  game = false;
-  level = new Level();
-  timer = new Timer();
-  player.reset();
-}
-
-void draw() {
-  if(game) {
-    level.display();
-    timer.display();
-  } else {
-    menu.display();
+  import java.util.*;
+  
+  boolean game = false;
+  Menu menu;
+  Level level;
+  Player player;
+  Timer timer;
+  TimeModifier timeModifier;
+  
+  void setup() {
+    size(800, 800);
+    noStroke();
+    level = new Level();
+    timer = new Timer();
+    menu = new Menu();
+    player = new Player();
+    timeModifier = new TimeModifier();
   }
-}
-
-void keyPressed() {
-  if(game) {
-    if(key == CODED) {
-      level.press(keyCode, true);
+  
+  void reset() {
+    game = false;
+    level = new Level();
+    timer = new Timer();
+    player.reset();
+  }
+  
+  void draw() {
+    if(game) {
+      level.display();
+      timer.display();
     } else {
-      level.press(key, false);
+      menu.display();
     }
-    level.keyAction();
   }
-}
-
-void keyReleased() {
-  if(game) {
-    if(key == CODED) {
-      level.release(keyCode, true);
-    } else {
-      level.release(key, false);
+  
+  void keyPressed() {
+    if(game) {
+      if(key == CODED) {
+        level.press(keyCode, true);
+      } else {
+        level.press(key, false);
+      }
+      level.keyAction();
     }
-    level.keyAction();
   }
-}
-
-void mousePressed() {
-  if(!game) {
-    menu.press();
+  
+  void keyReleased() {
+    if(game) {
+      if(key == CODED) {
+        level.release(keyCode, true);
+      } else {
+        level.release(key, false);
+      }
+      level.keyAction();
+    }
   }
-}
-
-void mouseReleased() {
-  if(!game) {
-    menu.release();
+  
+  void mousePressed() {
+    if(!game) {
+      menu.press();
+    }
   }
-}
+  
+  void mouseReleased() {
+    if(!game) {
+      menu.release();
+    }
+  }

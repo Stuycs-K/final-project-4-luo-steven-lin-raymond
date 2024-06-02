@@ -216,26 +216,24 @@ public class Level {
       return;
     } 
     
-    if(map.get(newY)[newX] == PLAYER) {
-       return;
+    int[][] positions = {{newX, newY}, {newX + 1, newY}, {newX, newY + 1}, {newX + 1, newY + 1}};
+    
+    for (int[] pos : positions){
+      int x = pos[0];
+      int y = pos[1];
+      if (x >= 0 && x < 40 && y >= 0 && y < 40) {
+        if (map.get(y)[x] == DIAMOND) {
+          player.addOre("DIAMOND");
+        } else if (map.get(y)[x] == URANIUM) {
+          player.addOre("URANIUM");
+        } else if (map.get(y)[x] == TITANIUM) {
+          player.addOre("TITANIUM");
+        } else if (map.get(y)[x] == TIME) {
+          timer.addTime(3);
+        }
+        map.get(y)[x] = SKY;
+      }
     }
-    if(map.get(newY)[newX] == DIAMOND) {
-      player.addOre("DIAMOND");
-      //println("DIAMOND");
-    }
-    if(map.get(newY)[newX] == URANIUM) {
-      player.addOre("URANIUM");
-      //println("URANIUM");
-    }
-    if(map.get(newY)[newX] == TITANIUM) {
-      player.addOre("TITANIUM");
-      //println("TITANIUM");
-    }
-    if(map.get(newY)[newX] == TIME) {
-      //println("TIME");
-      timer.addTime(3);
-    }
-    map.get(newY)[newX] = SKY;
   }
   
   private void movePlayer(int dy, int dx){
@@ -263,14 +261,10 @@ public class Level {
   }
   
   private void generate() {
-    int[] newLevel = new int[SIZE];
     for(int i = 0; i < SIZE/2; i++) {
       map.removeFirst();
-      newLevel = generateRow();
-      map.add(newLevel);
+      map.add(generateRow());
       player.setY(player.getY()-1);
     }
   }
-  
-  
 }
