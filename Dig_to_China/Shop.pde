@@ -114,4 +114,19 @@ public class Shop {
   public boolean isDigUpgradeApplied() {
     return digUpgradeApplied;
   } 
+  
+  public void keyRelease(char key_) {
+    HashMap<String, Integer> inv = player.getInventory();
+    if(key_ == '1') {
+      inv.put("DIAMOND", inv.get("DIAMOND")+16);
+    }
+    if(key_ == '2') {
+      inv.put("DIAMOND", inv.get("DIAMOND")+10);
+      inv.put("URANIUM", inv.get("URANIUM")+2);
+    }
+    if(key_ == '3') {
+      inv.put("DIAMOND", inv.get("DIAMOND")+10);
+      inv.put("URANIUM", inv.get("URANIUM")+5);
+    }
+  }
 }

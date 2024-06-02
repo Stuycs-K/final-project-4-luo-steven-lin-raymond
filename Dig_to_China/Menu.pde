@@ -51,9 +51,14 @@ public class Menu {
   
   public void release() {
     if (begin.isPressed() && begin.isMouseOver(mouseX, mouseY)) {
+      reset();
       game = true;
       begin.release();
     }
     shop.release();
+  }
+  
+  public void keyRelease(char key_) {
+    shop.keyRelease(key_);
   }
 }
