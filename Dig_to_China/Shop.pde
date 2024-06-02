@@ -1,25 +1,23 @@
-public class TimeModifier {
+public class Shop {
   
   private Button start;
   private Button max;
   private Button digUpgrade;
   private boolean digUpgradeApplied = false;
   
-  public TimeModifier() {
+  public Shop() {
     int buttonWidth = 300;
     int buttonHeight = 70;
-    int buttonY = height - 300;
-    int middleButtonX = width / 2 - buttonWidth / 2;
-    int leftButtonX = middleButtonX - buttonWidth - 50; 
-    int rightButtonX = middleButtonX + buttonWidth + 50;
+    int leftButton = 200;
+    int rightButton = 600;
 
-    start = new Button(leftButtonX, buttonY, buttonWidth, buttonHeight);
+    start = new Button(leftButton, height-200, buttonWidth, buttonHeight);
     start.text = "+3 seconds to start\nCost: 4 DIAMONDS";
     
-    max = new Button(rightButtonX, buttonY, buttonWidth, buttonHeight);
+    max = new Button(rightButton, height-200, buttonWidth, buttonHeight);
     max.text = "+3 seconds to max\nCost: 10 DIAMONDS, 2 URANIUM";
     
-    digUpgrade = new Button(middleButtonX, buttonY + buttonHeight + 50, buttonWidth, buttonHeight);
+    digUpgrade = new Button(200, height-400 + buttonHeight + 50, buttonWidth, buttonHeight);
     digUpgrade.text = "Increase Dig Distance\nCost: 10 DIAMONDS, 5 URANIUM";
   }
   
