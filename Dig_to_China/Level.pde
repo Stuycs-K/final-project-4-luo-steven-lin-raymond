@@ -212,11 +212,11 @@ public class Level {
   }
   
   public void dig(int newX, int newY) {
-    if(newX < 0 || newX >= 40 || newY < 0 || newY >= 40) {
+    if(newX < 0 || newX >= SIZE || newY < 0 || newY >= SIZE) {
       return;
     } 
     
-    int[][] positions = {{newX, newY}, {newX + 1, newY}, {newX, newY + 1}, {newX + 1, newY + 1}};
+    int[][] positions = {{newX, newY}, {newX + 1, newY}, {newX, newY - 1}, {newX + 1, newY - 1}};
     
     for (int[] pos : positions){
       int x = pos[0];
@@ -234,6 +234,7 @@ public class Level {
         map.get(y)[x] = SKY;
       }
     }
+    
   }
   
   private void movePlayer(int dy, int dx){
