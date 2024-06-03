@@ -134,7 +134,7 @@ public class Shop {
   
   public boolean fulfilledDigUpgrade() {
     HashMap<String, Integer> inv = player.getInventory();
-    return inv.get("DIAMOND") >= 10 && inv.get("URANIUM") >= 5;
+    return inv.get("DIAMOND") >= 10 && inv.get("URANIUM") >= 5 && !digUpgradeApplied;
   }
 
   public boolean isDigUpgradeApplied() {
