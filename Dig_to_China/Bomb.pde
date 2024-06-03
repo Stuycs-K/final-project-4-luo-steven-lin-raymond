@@ -1,10 +1,5 @@
 public class Bomb {
   
-  private Button buy;
-  
-  public Bomb(){
-  }
-  
   public void use(){
     HashMap<String, Integer> inv = player.getInventory();
     if(inv.get("BOMB") <= 0) {
