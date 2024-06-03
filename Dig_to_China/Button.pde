@@ -19,22 +19,6 @@ public class Button {
     this.h = h;
   }
   
-  //public Button(int x, int y, int w, int h, String name) {
-  //  this(x, y, w, h);
-  //  this.text = name;
-  //}
-  
-  //public Button(int x, int y, int w, int h, color defaultTextColor, color defaultBgColor) {
-  //  this(x, y, w, h);
-  //  this.defaultTextColor = defaultTextColor;
-  //  this.defaultBgColor = defaultBgColor;
-  //}
-  
-  //public Button(int x, int y, int w, int h, color defaultTextColor, color defaultBgColor, String name) {
-  //  this(x, y, w, h, defaultTextColor, defaultBgColor);
-  //  this.text = name;
-  //}
-  
   public void display() {
     if(isPressed){
       fill(pressedBgColor);
@@ -67,7 +51,7 @@ public class Button {
     else {
       fill(defaultTextColor);
     }
-    textSize(20);
+    textSize(18);
     text(text, x, y);
   }
   
