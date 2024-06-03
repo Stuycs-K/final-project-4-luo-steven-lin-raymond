@@ -113,6 +113,7 @@ public class Shop {
     HashMap<String, Integer> inv = player.getInventory();
     inv.put("DIAMOND", inv.get("DIAMOND") - 10);
     inv.put("URANIUM", inv.get("URANIUM") - 5);
+    inv.put("TITANIUM", inv.get("TITANIUM") - 1);
   }
   
   public void applyBomb() {
