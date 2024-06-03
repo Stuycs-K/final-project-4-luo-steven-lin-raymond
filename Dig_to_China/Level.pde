@@ -71,7 +71,7 @@ public class Level {
     textAlign(LEFT);
     background(0);
     rectMode(CORNER);
-    int factor = width / SIZE;
+    int factor = height / SIZE;
     int tile;
     for(int i = 0; i < SIZE; i++) {
       for(int j = 0; j < SIZE; j++) {

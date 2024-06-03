@@ -24,15 +24,19 @@ public class Menu {
     
     fill(255);
     textSize(24);
-    text("Max Depth: " + player.getMaxDepth(), width/2, height/2 - 300);
-    text("Last Depth: " + player.getPrevDepth(), width/2, height/2 - 250);
+    text("Max Depth: " + player.getMaxDepth(), width/2 - 150, height/2 - 300);
+    text("Last Depth: " + player.getPrevDepth(), width/2 + 150, height/2 - 300);
     
     fill(255);
     textSize(24);
     HashMap<String, Integer> inv = player.getInventory();
-    text("Diamond Amount: " + inv.get("DIAMOND"), width/2, height/2 - 200);
-    text("Uranium Amount: " + inv.get("URANIUM"), width/2, height/2 - 150);
-    text("Titanium Amount: " + inv.get("TITANIUM"), width/2, height/2 - 100);
+    text("Diamond Amount: " + inv.get("DIAMOND"), width/2, height/2 - 250);
+    text("Uranium Amount: " + inv.get("URANIUM"), width/2, height/2 - 200);
+    text("Titanium Amount: " + inv.get("TITANIUM"), width/2, height/2 - 150);
+    
+    text("Number of Bombs: " + inv.get("BOMB"), width/2, height/2 - 100);
+    text("Starting Time: " + timer.startTime + " s", width/2 - 150, height/2 - 50);
+    text("Max Time: " + timer.maxTime + " s", width/2 + 150, height/2 - 50);
     
     shop.display();
     
@@ -51,9 +55,14 @@ public class Menu {
   
   public void release() {
     if (begin.isPressed() && begin.isMouseOver(mouseX, mouseY)) {
+      reset();
       game = true;
       begin.release();
     }
     shop.release();
+  }
+  
+  public void keyRelease(char key_) {
+    shop.keyRelease(key_);
   }
 }

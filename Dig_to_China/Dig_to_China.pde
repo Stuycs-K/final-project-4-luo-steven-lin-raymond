@@ -51,6 +51,9 @@ void keyReleased() {
     }
     level.keyAction();
   }
+  else {
+    menu.keyRelease(key);
+  }
 }
 
 void mousePressed() {
