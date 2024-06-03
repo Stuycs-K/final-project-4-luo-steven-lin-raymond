@@ -148,12 +148,7 @@ public class Shop {
   }
 
   public void keyRelease(char key_) {
-    HashMap<String, Integer> inv = player.getInventory();
-    if(key_ == '1') {
-      inv.put("DIAMOND", inv.get("DIAMOND")+30);
-      inv.put("URANIUM", inv.get("URANIUM")+30);
-      inv.put("TITANIUM", inv.get("TITANIUM")+30);
-    }
+    
   }
   
 }
