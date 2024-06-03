@@ -142,9 +142,13 @@ public class Shop {
     return digUpgradeApplied;
   } 
   
-  
   public boolean fulfilledBomb() {
     HashMap<String, Integer> inv = player.getInventory();
     return inv.get("DIAMOND") >= 3;
   }
+
+  public void keyRelease(char key_) {
+    
+  }
+  
 }
