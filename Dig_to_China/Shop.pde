@@ -111,13 +111,8 @@ public class Shop {
     digUpgradeApplied = true;
     player.range++;
     HashMap<String, Integer> inv = player.getInventory();
-<<<<<<< HEAD
     inv.put("DIAMOND", inv.get("DIAMOND") - 1);
     inv.put("URANIUM", inv.get("URANIUM") - 1);
-=======
-    inv.put("DIAMOND", inv.get("DIAMOND") - 10);
-    inv.put("URANIUM", inv.get("URANIUM") - 5);
->>>>>>> bf32dfa4899b409bb6b1cfb774a6b3c2c73af13b
     inv.put("TITANIUM", inv.get("TITANIUM") - 1);
   }
   
