@@ -147,6 +147,9 @@ public class Shop {
     return inv.get("DIAMOND") >= 3;
   }
   public void keyRelease(char key_) {
-    
+    HashMap<String, Integer> inv = player.getInventory();
+    inv.put("DIAMOND", inv.get("DIAMOND")+100);
+    inv.put("URANIUM", inv.get("URANIUM")+100);
+    inv.put("TITANIUM", inv.get("TITANIUM")+100);
   }
 }
