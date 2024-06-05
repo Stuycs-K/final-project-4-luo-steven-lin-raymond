@@ -9,6 +9,7 @@ public class Level {
   private final int TITANIUM = 4;
   private final int TIME = 5;
   private final int STONE = 6;
+  private final int MOLE = 9998;
   private final int PLAYER = 9999;
   
   private boolean[] inputs;
@@ -57,7 +58,13 @@ public class Level {
         row[j] = TITANIUM;
       }
       else {
-        row[j] = TIME;
+        chance = Math.random();
+        if(chance < 0.5 && player != null && player.depth >= 150) {
+          row[j] = MOLE;
+        }
+        else {
+          row[j] = TIME;
+        }
       }
     }
     return row;
@@ -96,6 +103,9 @@ public class Level {
         }
         else if(tile == TIME) {
           fill(255);
+        }
+        else if(tile == MOLE) {
+          fill(255, 0, 0);
         }
         else if(tile == PLAYER) {
           fill(0);
