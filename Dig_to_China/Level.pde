@@ -241,6 +241,9 @@ public class Level {
         } else if (map.get(y)[x] == TIME) {
           timer.addTime(3);
         }
+        else if (map.get(y)[x] == MOLE) {
+          mole.begin(player.x, player.y);
+        }
         map.get(y)[x] = SKY;
       }
     }
