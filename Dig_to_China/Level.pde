@@ -125,6 +125,8 @@ public class Level {
       timer.tick();
       pastTime = current;
     }
+    
+    ensureGravity();
   }
   
   public boolean[] getInputs() {
@@ -265,10 +267,7 @@ public class Level {
         player.setY(newY);
         map.get(newY)[newX] = PLAYER;
       //}
-      if(dy == 1) {
-        player.addDepth();
-        //println(player.getDepth());
-      }
+      player.addDepth(dy);
     }
     else if (newY >= SIZE - 5) {
       generate();
@@ -281,5 +280,13 @@ public class Level {
       map.add(generateRow());
       player.setY(player.getY()-1);
     }
+  }
+  
+  private void ensureGravity() {
+    int dy = 0;
+    while(map.get(player.y + dy)[player.x] == SKY) {
+      dy++;
+    }
+    movePlayer(dy, 0);
   }
 }

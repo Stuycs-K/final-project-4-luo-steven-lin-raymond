@@ -23,9 +23,6 @@ public class Mole {
     else {
       done = move(0, 1);
     }
-    if(!done) {
-      run();
-    }
   }
   
   private boolean move(int dy, int dx){
@@ -33,9 +30,6 @@ public class Mole {
     int newY = y + dy;
     
     if (newX >= 0 && newX < level.SIZE && newY >= 0 && newY < level.SIZE - 5){
-      if(level.map.get(newY)[newX] == level.PLAYER) {
-        return false;
-      }
       
       if (level.map.get(newY)[newX] != level.SKY){
         level.dig(newX, newY);
