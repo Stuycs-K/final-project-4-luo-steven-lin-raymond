@@ -291,6 +291,6 @@ public class Level {
     while(map.get(player.y + dy)[player.x] == SKY) {
       dy++;
     }
-    movePlayer(dy, 0);
+    movePlayer(dy-1, 0);
   }
 }
