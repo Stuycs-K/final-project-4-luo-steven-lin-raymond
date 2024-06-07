@@ -283,7 +283,11 @@ public class Level {
   }
   
   private void ensureGravity() {
-    int dy = 0;
+    if(map.get(player.y+1)[player.x] != SKY) {
+      return;
+    }
+    
+    int dy = 1;
     while(map.get(player.y + dy)[player.x] == SKY) {
       dy++;
     }
