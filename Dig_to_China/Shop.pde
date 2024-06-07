@@ -146,10 +146,14 @@ public class Shop {
     HashMap<String, Integer> inv = player.getInventory();
     return inv.get("DIAMOND") >= 3;
   }
+  
+  // REMOVE LATER
   public void keyRelease(char key_) {
-    HashMap<String, Integer> inv = player.getInventory();
-    inv.put("DIAMOND", inv.get("DIAMOND")+100);
-    inv.put("URANIUM", inv.get("URANIUM")+100);
-    inv.put("TITANIUM", inv.get("TITANIUM")+100);
+    if(key_ == '1') {
+      HashMap<String, Integer> inv = player.getInventory();
+      inv.put("DIAMOND", inv.get("DIAMOND")+100);
+      inv.put("URANIUM", inv.get("URANIUM")+100);
+      inv.put("TITANIUM", inv.get("TITANIUM")+100);
+    }
   }
 }

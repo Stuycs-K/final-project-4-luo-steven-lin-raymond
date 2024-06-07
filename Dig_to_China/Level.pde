@@ -59,7 +59,8 @@ public class Level {
       }
       else {
         chance = Math.random();
-        if(chance < 0.5 && player != null && player.depth >= 150) {
+        //if(chance < 0.5 && player != null && player.depth >= 150) {
+        if(chance < 0.5 && player != null) {
           row[j] = MOLE;
         }
         else {
@@ -242,7 +243,7 @@ public class Level {
           timer.addTime(3);
         }
         else if (map.get(y)[x] == MOLE) {
-          mole.begin(player.x, player.y);
+          Mole mole = new Mole(player.x, player.y);
         }
         map.get(y)[x] = SKY;
       }
