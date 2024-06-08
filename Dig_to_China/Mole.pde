@@ -7,7 +7,7 @@ public class Mole {
     this.x = x;
     this.y = y;
     start = millis();
-    while((millis() - start) % 500 == 0 && (millis() - start <= 2000) && (millis() - start != 0)) {
+    while((millis() - start) % 500 == 0 && (millis() - start <= 2000)) {
       run();
     }
   }

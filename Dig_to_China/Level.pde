@@ -294,11 +294,10 @@ public class Level {
         break;
       }
       int difference = millis() - last;
-      if(difference != 0 && difference % 500 == 0) {
+      if(difference % 500 == 0) {
         movePlayer(1, 0);
         dy--;
         last = millis();
-        println(millis());
       }
     }
   }
