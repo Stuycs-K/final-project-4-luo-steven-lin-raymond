@@ -3,10 +3,13 @@ public class Timer {
   private int startTime;
   private int maxTime;
   
+  private int pastTime;
+  
   public Timer(int time, int maxTime) {
     this.time = time;
     startTime = time;
     this.maxTime = maxTime;
+    pastTime = millis();
   }
   
   public Timer() {
@@ -39,7 +42,11 @@ public class Timer {
   }
   
   public void tick() {
-    time--;
+    int current = millis();
+    if(current - pastTime >= 1000) {
+      time--;
+      pastTime = current;
+    }
   }
   
   public void addTime(int dt) {

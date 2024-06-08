@@ -119,12 +119,7 @@ public class Level {
     
     bomb.display();
     
-    int current = millis();
-    if(current - pastTime >= 1000) {
-      //println("TICK");
-      timer.tick();
-      pastTime = current;
-    }
+    timer.tick();
     
     ensureGravity();
   }
@@ -291,6 +286,20 @@ public class Level {
     while(map.get(player.y + dy)[player.x] == SKY) {
       dy++;
     }
-    movePlayer(dy-1, 0);
+    
+    int last = millis();
+    int savedX = player.x;
+    while(dy > 1) {
+      if(player.x != savedX) {
+        break;
+      }
+      int difference = millis() - last;
+      if(difference != 0 && difference % 500 == 0) {
+        movePlayer(1, 0);
+        dy--;
+        last = millis();
+        println(millis());
+      }
+    }
   }
 }

@@ -1,12 +1,13 @@
 public class Mole {
   int x = 0;
   int y = 0;
+  int start;
   
   public Mole(int x, int y) {
     this.x = x;
     this.y = y;
-    int start = millis();
-    while((millis() - start) % 500 == 0 && (millis() - start <= 2000)) {
+    start = millis();
+    while((millis() - start) % 500 == 0 && (millis() - start <= 2000) && (millis() - start != 0)) {
       run();
     }
   }
