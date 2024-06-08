@@ -59,8 +59,8 @@ public class Player {
     return depth;
   }
   
-  public void addDepth() {
-    depth++;
+  public void addDepth(int dy) {
+    depth += dy;
   }
   
   public int getMaxDepth() {

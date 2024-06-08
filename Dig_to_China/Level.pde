@@ -9,6 +9,7 @@ public class Level {
   private final int TITANIUM = 4;
   private final int TIME = 5;
   private final int STONE = 6;
+  private final int MOLE = 9998;
   private final int PLAYER = 9999;
   
   private boolean[] inputs;
@@ -30,7 +31,7 @@ public class Level {
     map.add(row);
     
     for(int i = SIZE/2+1; i < SIZE; i++) {
-      row = generateRow();
+      row = generateRow(i);
       map.add(row);
     }
     
@@ -39,34 +40,11 @@ public class Level {
     //}
   }
   
-  public int[] generateRow() {
-    int[] row = new int[SIZE];
-    double chance;
-    for(int j = 0; j < row.length; j++) {
-      chance = Math.random();
-      if(chance < 0.95) {
-        row[j] = STONE;
-      }
-      else if(chance < 0.97) {
-        row[j] = DIAMOND;
-      }
-      else if(chance < 0.985) {
-        row[j] = URANIUM;
-      }
-      else if(chance < 0.995) {
-        row[j] = TITANIUM;
-      }
-      else {
-        row[j] = TIME;
-      }
-    }
-    return row;
-  }
-  
   public void display() {
     if(!timer.isPositive()) {
       reset();
     }
+    ensureGravity();
     
     textAlign(LEFT);
     background(0);
@@ -97,6 +75,9 @@ public class Level {
         else if(tile == TIME) {
           fill(255);
         }
+        else if(tile == MOLE) {
+          fill(255, 0, 0);
+        }
         else if(tile == PLAYER) {
           fill(0);
         }
@@ -108,12 +89,7 @@ public class Level {
     
     bomb.display();
     
-    int current = millis();
-    if(current - pastTime >= 1000) {
-      //println("TICK");
-      timer.tick();
-      pastTime = current;
-    }
+    timer.tick();
   }
   
   public boolean[] getInputs() {
@@ -221,7 +197,7 @@ public class Level {
     for (int[] pos : positions){
       int x = pos[0];
       int y = pos[1];
-      if (x >= 0 && x < SIZE && y >= 0 && y < SIZE) {
+      if (x >= 0 && x < SIZE && y >= 0 && y < SIZE - 5) {
         if (map.get(y)[x] == DIAMOND) {
           player.addOre("DIAMOND");
         } else if (map.get(y)[x] == URANIUM) {
@@ -230,6 +206,9 @@ public class Level {
           player.addOre("TITANIUM");
         } else if (map.get(y)[x] == TIME) {
           timer.addTime(3);
+        }
+        else if (map.get(y)[x] == MOLE && !mole.active) {
+          mole.run(player.x, player.y);
         }
         map.get(y)[x] = SKY;
       }
@@ -251,10 +230,7 @@ public class Level {
         player.setY(newY);
         map.get(newY)[newX] = PLAYER;
       //}
-      if(dy == 1) {
-        player.addDepth();
-        //println(player.getDepth());
-      }
+      player.addDepth(dy);
     }
     else if (newY >= SIZE - 5) {
       generate();
@@ -262,10 +238,66 @@ public class Level {
   }
   
   private void generate() {
-    for(int i = 0; i < SIZE/2; i++) {
+    for(int i = SIZE/2; i < SIZE; i++) {
       map.removeFirst();
-      map.add(generateRow());
+      map.add(generateRow(i));
       player.setY(player.getY()-1);
+    }
+  }
+  
+  public int[] generateRow(int depth) {
+    int[] row = new int[SIZE];
+    double chance;
+    for(int j = 0; j < row.length; j++) {
+      chance = Math.random();
+      if(chance < 0.95) {
+        row[j] = STONE;
+      }
+      else if(chance < 0.97) {
+        row[j] = DIAMOND;
+      }
+      else if(chance < 0.985) {
+        row[j] = URANIUM;
+      }
+      else if(chance < 0.995) {
+        row[j] = TITANIUM;
+      }
+      else {
+        chance = Math.random();
+        if(chance < 0.5 && player != null && player.depth >= 150 && depth < SIZE - 5) {
+        //if(chance < 0.5 && player != null && depth < SIZE - 5) {
+          row[j] = MOLE;
+        }
+        else {
+          row[j] = TIME;
+        }
+      }
+    }
+    return row;
+  }
+  
+  private void ensureGravity() {
+    if(map.get(player.y+1)[player.x] != SKY) {
+      return;
+    }
+    
+    int dy = 1;
+    while(player.y + dy < SIZE && map.get(player.y + dy)[player.x] == SKY) {
+      dy++;
+    }
+    
+    int last = millis();
+    int savedX = player.x;
+    while(dy > 1) {
+      if(player.x != savedX) {
+        break;
+      }
+      int difference = millis() - last;
+      if(difference > 100) {
+        movePlayer(1, 0);
+        dy--;
+        last = millis();
+      }
     }
   }
 }

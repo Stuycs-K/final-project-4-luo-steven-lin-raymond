@@ -124,12 +124,12 @@ public class Shop {
   
   public boolean fulfilledStart() {
     HashMap<String, Integer> inv = player.getInventory();
-    return inv.get("DIAMOND") >= 7;
+    return inv.get("DIAMOND") >= 7 && timer.startTime < timer.TIMER_THRESHOLD;
   }
   
   public boolean fulfilledMax() {
     HashMap<String, Integer> inv = player.getInventory();
-    return inv.get("DIAMOND") >= 10 && inv.get("URANIUM") >= 2;
+    return inv.get("DIAMOND") >= 10 && inv.get("URANIUM") >= 2 && timer.maxTime < timer.TIMER_THRESHOLD;
   }
   
   
@@ -146,7 +146,14 @@ public class Shop {
     HashMap<String, Integer> inv = player.getInventory();
     return inv.get("DIAMOND") >= 3;
   }
+  
+  // REMOVE LATER
   public void keyRelease(char key_) {
-    
+    if(key_ == '1') {
+      HashMap<String, Integer> inv = player.getInventory();
+      inv.put("DIAMOND", inv.get("DIAMOND")+100);
+      inv.put("URANIUM", inv.get("URANIUM")+100);
+      inv.put("TITANIUM", inv.get("TITANIUM")+100);
+    }
   }
 }

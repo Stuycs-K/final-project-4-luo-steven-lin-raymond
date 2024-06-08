@@ -5,6 +5,7 @@ Menu menu;
 Level level;
 Player player;
 Timer timer;
+Mole mole;
 
 void setup() {
   size(800, 800);
@@ -13,6 +14,7 @@ void setup() {
   timer = new Timer();
   menu = new Menu();
   player = new Player();
+  mole = new Mole();
 }
 
 void reset() {
@@ -20,6 +22,7 @@ void reset() {
   level = new Level();
   timer.reset();
   player.reset();
+  mole = new Mole();
 }
 
 void draw() {
