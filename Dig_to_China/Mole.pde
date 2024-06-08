@@ -1,19 +1,21 @@
 public class Mole {
   int x = 0;
   int y = 0;
-  int start;
+  boolean active;
   
-  public Mole(int x, int y) {
-    this.x = x;
-    this.y = y+1;
-    start = millis();
+  public Mole() {
+    active = false;
   }
   
-  public void run() {
+  public void run(int x, int y) {
+    this.x = x;
+    this.y = y+1;
+    active = true;
+    level.map.get(y)[x] = level.SKY;
     for(int i = 0; i < 100; i++) {
       double chance = Math.random();
       if(chance < 1.0/9) {
-        move(1, 0);
+        move(-1, 0);
       }
       else if(chance < 5.0/9) {
         move(0, -1);
@@ -23,6 +25,7 @@ public class Mole {
       }
     }
     level.map.get(y)[x] = level.SKY;
+    active = false;
   }
   
   private boolean move(int dy, int dx){

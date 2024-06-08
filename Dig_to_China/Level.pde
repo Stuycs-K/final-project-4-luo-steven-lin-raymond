@@ -31,7 +31,7 @@ public class Level {
     map.add(row);
     
     for(int i = SIZE/2+1; i < SIZE; i++) {
-      row = generateRow();
+      row = generateRow(i);
       map.add(row);
     }
     
@@ -40,41 +40,11 @@ public class Level {
     //}
   }
   
-  public int[] generateRow() {
-    int[] row = new int[SIZE];
-    double chance;
-    for(int j = 0; j < row.length; j++) {
-      chance = Math.random();
-      if(chance < 0.95) {
-        row[j] = STONE;
-      }
-      else if(chance < 0.97) {
-        row[j] = DIAMOND;
-      }
-      else if(chance < 0.985) {
-        row[j] = URANIUM;
-      }
-      else if(chance < 0.995) {
-        row[j] = TITANIUM;
-      }
-      else {
-        chance = Math.random();
-        //if(chance < 0.5 && player != null && player.depth >= 150) {
-        if(chance < 0.5 && player != null) {
-          row[j] = MOLE;
-        }
-        else {
-          row[j] = TIME;
-        }
-      }
-    }
-    return row;
-  }
-  
   public void display() {
     if(!timer.isPositive()) {
       reset();
     }
+    ensureGravity();
     
     textAlign(LEFT);
     background(0);
@@ -120,8 +90,6 @@ public class Level {
     bomb.display();
     
     timer.tick();
-    
-    ensureGravity();
   }
   
   public boolean[] getInputs() {
@@ -229,7 +197,7 @@ public class Level {
     for (int[] pos : positions){
       int x = pos[0];
       int y = pos[1];
-      if (x >= 0 && x < SIZE && y >= 0 && y < SIZE) {
+      if (x >= 0 && x < SIZE && y >= 0 && y < SIZE - 5) {
         if (map.get(y)[x] == DIAMOND) {
           player.addOre("DIAMOND");
         } else if (map.get(y)[x] == URANIUM) {
@@ -239,9 +207,8 @@ public class Level {
         } else if (map.get(y)[x] == TIME) {
           timer.addTime(3);
         }
-        else if (map.get(y)[x] == MOLE) {
-          Mole mole = new Mole(player.x, player.y);
-          mole.run();
+        else if (map.get(y)[x] == MOLE && !mole.active) {
+          mole.run(player.x, player.y);
         }
         map.get(y)[x] = SKY;
       }
@@ -271,11 +238,42 @@ public class Level {
   }
   
   private void generate() {
-    for(int i = 0; i < SIZE/2; i++) {
+    for(int i = SIZE/2; i < SIZE; i++) {
       map.removeFirst();
-      map.add(generateRow());
+      map.add(generateRow(i));
       player.setY(player.getY()-1);
     }
+  }
+  
+  public int[] generateRow(int depth) {
+    int[] row = new int[SIZE];
+    double chance;
+    for(int j = 0; j < row.length; j++) {
+      chance = Math.random();
+      if(chance < 0.95) {
+        row[j] = STONE;
+      }
+      else if(chance < 0.97) {
+        row[j] = DIAMOND;
+      }
+      else if(chance < 0.985) {
+        row[j] = URANIUM;
+      }
+      else if(chance < 0.995) {
+        row[j] = TITANIUM;
+      }
+      else {
+        chance = Math.random();
+        if(chance < 0.5 && player != null && player.depth >= 150 && depth < SIZE - 5) {
+        //if(chance < 0.5 && player != null && depth < SIZE - 5) {
+          row[j] = MOLE;
+        }
+        else {
+          row[j] = TIME;
+        }
+      }
+    }
+    return row;
   }
   
   private void ensureGravity() {
@@ -295,7 +293,7 @@ public class Level {
         break;
       }
       int difference = millis() - last;
-      if(difference % 500 == 0) {
+      if(difference > 100) {
         movePlayer(1, 0);
         dy--;
         last = millis();
