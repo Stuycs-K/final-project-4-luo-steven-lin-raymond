@@ -2,6 +2,7 @@ public class Timer {
   private int time;
   private int startTime;
   private int maxTime;
+  private final int TIMER_THRESHOLD = 50;
   
   private int pastTime;
   
@@ -50,7 +51,7 @@ public class Timer {
   }
   
   public void addTime(int dt) {
-    if(time + dt > maxTime) {
+    if(time + dt >= maxTime) {
       time = maxTime;
     } else {
       time += dt;
@@ -58,7 +59,7 @@ public class Timer {
   }
   
   public void addStartTime(int dt) {
-    if(startTime + dt > maxTime) {
+    if(startTime + dt >= maxTime) {
       startTime = maxTime;
     } else {
       startTime += dt;
@@ -74,8 +75,11 @@ public class Timer {
   }
   
   public void setMaxTime(int mTime) {
-    if(mTime <= 50) {
+    if(mTime < TIMER_THRESHOLD) {
       maxTime = mTime;
+    }
+    else {
+      maxTime = TIMER_THRESHOLD;
     }
   }
   
