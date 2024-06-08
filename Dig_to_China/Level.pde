@@ -241,6 +241,7 @@ public class Level {
         }
         else if (map.get(y)[x] == MOLE) {
           Mole mole = new Mole(player.x, player.y);
+          mole.run();
         }
         map.get(y)[x] = SKY;
       }
@@ -283,7 +284,7 @@ public class Level {
     }
     
     int dy = 1;
-    while(map.get(player.y + dy)[player.x] == SKY) {
+    while(player.y + dy < SIZE && map.get(player.y + dy)[player.x] == SKY) {
       dy++;
     }
     
