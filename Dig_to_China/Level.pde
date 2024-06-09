@@ -212,8 +212,7 @@ public class Level {
         }
         map.get(y)[x] = SKY;
       }
-    }
-    
+    } 
   }
   
   private void movePlayer(int dy, int dx){

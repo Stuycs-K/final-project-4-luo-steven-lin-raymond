@@ -9,8 +9,11 @@ public class Button {
   private color hover2BgColor = color(0, 255, 0);
   private color pressedTextColor = color(255);
   private color pressedBgColor = color(0);
+  private int disabledTextColor = color(150);
+  private int disabledBgColor = color(200);
   private boolean isPressed = false;
   private boolean fulfilled = false;
+  private boolean enabled = true;
   
   public Button(int x, int y, int w, int h) {
     this.x = x;
@@ -20,35 +23,33 @@ public class Button {
   }
   
   public void display() {
-    if(isPressed){
+    if (!enabled) {
+      fill(disabledBgColor); 
+    } else if (isPressed) {
       fill(pressedBgColor);
-    }
-    else if(isMouseOver(mouseX, mouseY)) {
-      if(fulfilled) {
+    } else if (isMouseOver(mouseX, mouseY)) {
+      if (fulfilled) {
         fill(hover2BgColor);
-      }
-      else {
+      } else {
         fill(hover1BgColor);
       }
-    }
-    else {
+    } else {
       fill(defaultBgColor);
     }
     rectMode(CENTER);
     rect(x, y, w, h);
     
-    if(isPressed){
+    if (!enabled) {
+      fill(disabledTextColor); 
+    } else if (isPressed) {
       fill(pressedTextColor);
-    }
-    else if(isMouseOver(mouseX, mouseY)) {
-      if(fulfilled) {
+    } else if (isMouseOver(mouseX, mouseY)) {
+      if (fulfilled) {
         fill(hover2TextColor);
-      }
-      else {
+      } else {
         fill(hover1TextColor);
       }
-    }
-    else {
+    } else {
       fill(defaultTextColor);
     }
     textSize(18);
@@ -56,7 +57,9 @@ public class Button {
   }
   
   public void press(){
-    isPressed = true;
+    if (enabled){
+      isPressed = true;
+    }
   }
   
   public void release() {
