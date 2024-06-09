@@ -214,6 +214,8 @@ public class Level {
           player.addOre("TITANIUM");
         } else if (map.get(y)[x] == TIME) {
           timer.addTime(3);
+        } else if (map.get(y)[x] == MOLE) {
+          mole.run(x, y);
         }
         map.get(y)[x] = SKY;
         maxClearedY = Math.max(maxClearedY, y);

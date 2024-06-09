@@ -31,3 +31,8 @@ In the game:
 - Use the W (or UP arrow key) to dig up. The player will not move.
 - Use B to bomb a certain area. The player will automatically drop.
 - Use Q to quit the current digging session.
+
+## Bugs
+
+- When the digging upgrades are applied, the player's movements lags a little bit.
+- When the digging upgrades are applied and the player digs up, the player stops appearing.
