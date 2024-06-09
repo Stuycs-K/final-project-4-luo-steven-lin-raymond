@@ -194,25 +194,25 @@ public class Level {
     
     int[][] positions = {{newX, newY}, {newX + player.range, newY}, {newX, newY - player.range}, {newX + player.range, newY - player.range}};
     
-    for (int[] pos : positions){
-      int x = pos[0];
-      int y = pos[1];
-      if (x >= 0 && x < SIZE && y >= 0 && y < SIZE - 5) {
-        if (map.get(y)[x] == DIAMOND) {
-          player.addOre("DIAMOND");
-        } else if (map.get(y)[x] == URANIUM) {
-          player.addOre("URANIUM");
-        } else if (map.get(y)[x] == TITANIUM) {
-          player.addOre("TITANIUM");
-        } else if (map.get(y)[x] == TIME) {
-          timer.addTime(3);
+    for(int x = newX; x <= newX + player.range; x++) {
+      for(int y = newY; y >= newY - player.range; y--) {
+        if (x >= 0 && x < SIZE && y >= 0 && y < SIZE - 5) {
+          if (map.get(y)[x] == DIAMOND) {
+            player.addOre("DIAMOND");
+          } else if (map.get(y)[x] == URANIUM) {
+            player.addOre("URANIUM");
+          } else if (map.get(y)[x] == TITANIUM) {
+            player.addOre("TITANIUM");
+          } else if (map.get(y)[x] == TIME) {
+            timer.addTime(3);
+          }
+          else if (map.get(y)[x] == MOLE && !mole.active) {
+            mole.run(player.x, player.y);
+          }
+          map.get(y)[x] = SKY;
         }
-        else if (map.get(y)[x] == MOLE && !mole.active) {
-          mole.run(player.x, player.y);
-        }
-        map.get(y)[x] = SKY;
       }
-    } 
+    }
   }
   
   private void movePlayer(int dy, int dx){

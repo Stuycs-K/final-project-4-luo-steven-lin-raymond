@@ -40,7 +40,7 @@ public class Shop {
       digUpgrade.text = "Max Dig Distance\n80 DIAMONDS, 40 URANIUM, 10 TITANIUM";
     }
     else {
-      digUpgrade.text = "Max Level Reaached";
+      digUpgrade.text = "Max Level Reached";
       digUpgrade.enabled = false; 
     }
   }
