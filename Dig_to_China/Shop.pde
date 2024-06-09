@@ -143,19 +143,19 @@ public class Shop {
       inv.put("TITANIUM", inv.get("TITANIUM") - 1);
     }
     else if (digUpgradeLevel == 2){
-    inv.put("DIAMOND", inv.get("DIAMOND") - 20);
-    inv.put("URANIUM", inv.get("URANIUM") - 10);
-    inv.put("TITANIUM", inv.get("TITANIUM") - 2);
+      inv.put("DIAMOND", inv.get("DIAMOND") - 20);
+      inv.put("URANIUM", inv.get("URANIUM") - 10);
+      inv.put("TITANIUM", inv.get("TITANIUM") - 2);
     }
     else if (digUpgradeLevel == 3){
-    inv.put("DIAMOND", inv.get("DIAMOND") - 40);
-    inv.put("URANIUM", inv.get("URANIUM") - 20);
-    inv.put("TITANIUM", inv.get("TITANIUM") - 4);
+      inv.put("DIAMOND", inv.get("DIAMOND") - 40);
+      inv.put("URANIUM", inv.get("URANIUM") - 20);
+      inv.put("TITANIUM", inv.get("TITANIUM") - 4);
     }
     else if (digUpgradeLevel == 4){
-    inv.put("DIAMOND", inv.get("DIAMOND") - 80);
-    inv.put("URANIUM", inv.get("URANIUM") - 40);
-    inv.put("TITANIUM", inv.get("TITANIUM") - 10);
+      inv.put("DIAMOND", inv.get("DIAMOND") - 80);
+      inv.put("URANIUM", inv.get("URANIUM") - 40);
+      inv.put("TITANIUM", inv.get("TITANIUM") - 10);
     }
     updateDigUpgradeText();
   }
@@ -212,7 +212,7 @@ public class Shop {
     }
     return false;
   }
-
+  
   public boolean isDigUpgradeApplied() {
     return digUpgradeApplied;
   } 
@@ -222,7 +222,6 @@ public class Shop {
     return inv.get("DIAMOND") >= 3;
   }
   
-  // REMOVE LATER
   public void keyRelease(char key_) {
     if(key_ == '1') {
       HashMap<String, Integer> inv = player.getInventory();
