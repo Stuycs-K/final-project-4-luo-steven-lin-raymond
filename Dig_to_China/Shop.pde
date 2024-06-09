@@ -26,25 +26,6 @@ public class Shop {
     bombs.text = "+1 Bomb\n3 DIAMONDS";
   }
   
-  private void updateDigUpgradeText(){
-    if (digUpgradeLevel == 0){
-      digUpgrade.text = "Increase Dig Distance\n10 DIAMONDS, 5 URANIUM, 1 TITANIUM";
-    }
-    else if (digUpgradeLevel == 1){
-      digUpgrade.text = "Increase Dig Distance\n20 DIAMONDS, 10 URANIUM, 2 TITANIUM";
-    }
-    else if (digUpgradeLevel == 2){
-      digUpgrade.text = "Increase Dig Distance\n40 DIAMONDS, 20 URANIUM, 4 TITANIUM";
-    }
-    else if (digUpgradeLevel == 3){
-      digUpgrade.text = "Max Dig Distance\n80 DIAMONDS, 40 URANIUM, 10 TITANIUM";
-    }
-    else {
-      digUpgrade.text = "Max Level Reached";
-      digUpgrade.enabled = false; 
-    }
-  }
-  
   public void display() {
     start.display();
     max.display();
@@ -56,6 +37,7 @@ public class Shop {
     } else {
       start.fulfilled = false;
     }
+    upgradeStartText();
     
     if(fulfilledMax()) {
       max.fulfilled = true;
@@ -120,11 +102,34 @@ public class Shop {
     inv.put("DIAMOND", inv.get("DIAMOND")-7);
   }
   
+  private void upgradeStartText() {
+    if(timer.startTime < timer.maxTime) {
+      start.text = "+3 seconds to start\n7 DIAMONDS";
+      start.enabled = true;
+    }
+    else {
+      start.text = "Max Start Time Reached";
+      start.enabled = false; 
+    }
+  }
+  
   public void applyMax(int amount) {
     timer.setMaxTime(timer.getMaxTime() + amount);
     HashMap<String, Integer> inv = player.getInventory();
     inv.put("DIAMOND", inv.get("DIAMOND")-10);
     inv.put("URANIUM", inv.get("URANIUM")-2);
+    upgradeMaxText();
+  }
+  
+  private void upgradeMaxText() {
+    if(timer.maxTime < timer.TIMER_THRESHOLD) {
+      max.text = "+3 seconds to max\n10 DIAMONDS, 2 URANIUM";
+      max.enabled = true;
+    }
+    else {
+      max.text = "Max Time Threshold Reached";
+      max.enabled = false; 
+    }
   }
   
   public void applyDigUpgrade(){
@@ -155,6 +160,25 @@ public class Shop {
     updateDigUpgradeText();
   }
   
+  private void updateDigUpgradeText(){
+    if (digUpgradeLevel == 0){
+      digUpgrade.text = "Increase Dig Distance\n10 DIAMONDS, 5 URANIUM, 1 TITANIUM";
+    }
+    else if (digUpgradeLevel == 1){
+      digUpgrade.text = "Increase Dig Distance\n20 DIAMONDS, 10 URANIUM, 2 TITANIUM";
+    }
+    else if (digUpgradeLevel == 2){
+      digUpgrade.text = "Increase Dig Distance\n40 DIAMONDS, 20 URANIUM, 4 TITANIUM";
+    }
+    else if (digUpgradeLevel == 3){
+      digUpgrade.text = "Max Dig Distance\n80 DIAMONDS, 40 URANIUM, 10 TITANIUM";
+    }
+    else {
+      digUpgrade.text = "Max Level Reached";
+      digUpgrade.enabled = false; 
+    }
+  }
+  
   public void applyBomb() {
     HashMap<String, Integer> inv = player.getInventory();
     inv.put("DIAMOND", inv.get("DIAMOND")-3);
@@ -163,7 +187,7 @@ public class Shop {
   
   public boolean fulfilledStart() {
     HashMap<String, Integer> inv = player.getInventory();
-    return inv.get("DIAMOND") >= 7 && timer.startTime < timer.TIMER_THRESHOLD;
+    return inv.get("DIAMOND") >= 7 && timer.startTime < timer.maxTime && timer.startTime < timer.TIMER_THRESHOLD;
   }
   
   public boolean fulfilledMax() {
