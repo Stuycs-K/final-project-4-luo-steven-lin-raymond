@@ -34,7 +34,7 @@ public class Mole {
     
     if (newX >= 0 && newX < level.SIZE && newY >= 0 && newY < level.SIZE - 5){
       if (level.map.get(newY)[newX] != level.SKY){
-        level.dig(newX, newY);
+        dig(newX, newY);
       }
       //else{
         level.map.get(y)[x] = level.SKY;
@@ -45,5 +45,23 @@ public class Mole {
       return true;
     }
     return false;
+  }
+  
+  public void dig(int newX, int newY) {
+    if (newX < 0 || newX >= level.SIZE || newY < 0 || newY >= level.SIZE) {
+        return;
+    }
+    
+    LinkedList<int[]> map = level.map;
+    if (map.get(y)[x] == level.DIAMOND) {
+      player.addOre("DIAMOND");
+    } else if (map.get(y)[x] == level.URANIUM) {
+      player.addOre("URANIUM");
+    } else if (map.get(y)[x] == level.TITANIUM) {
+      player.addOre("TITANIUM");
+    } else if (map.get(y)[x] == level.TIME) {
+      timer.addTime(3);
+    }
+    map.get(y)[x] = level.SKY;
   }
 }

@@ -188,30 +188,41 @@ public class Level {
   }
   
   public void dig(int newX, int newY) {
-    if(newX < 0 || newX >= SIZE || newY < 0 || newY >= SIZE) {
-      return;
-    } 
-    
-    int[][] positions = {{newX, newY}, {newX + player.range, newY}, {newX, newY - player.range}, {newX + player.range, newY - player.range}};
-    
-    for(int x = newX; x <= newX + player.range; x++) {
-      for(int y = newY; y >= newY - player.range; y--) {
-        if (x >= 0 && x < SIZE && y >= 0 && y < SIZE - 5) {
-          if (map.get(y)[x] == DIAMOND) {
-            player.addOre("DIAMOND");
-          } else if (map.get(y)[x] == URANIUM) {
-            player.addOre("URANIUM");
-          } else if (map.get(y)[x] == TITANIUM) {
-            player.addOre("TITANIUM");
-          } else if (map.get(y)[x] == TIME) {
-            timer.addTime(3);
-          }
-          else if (map.get(y)[x] == MOLE && !mole.active) {
-            mole.run(player.x, player.y);
-          }
-          map.get(y)[x] = SKY;
+    if (newX < 0 || newX >= SIZE || newY < 0 || newY >= SIZE) {
+        return;
+    }
+
+    int range = player.range; 
+    int halfRange = range / 2; 
+    int startX = newX - halfRange;
+    int startY = newY - halfRange;
+    int endX = newX + halfRange;
+    int endY = newY + halfRange;
+    startX = Math.max(0, startX);
+    startY = Math.max(0, startY);
+    endX = Math.min(SIZE - 1, endX);
+    endY = Math.min(SIZE - 1, endY);
+
+    int maxClearedY = newY;
+    for (int y = startY; y <= endY; y++) {
+      for (int x = startX; x <= endX; x++) {
+        if (map.get(y)[x] == DIAMOND) {
+          player.addOre("DIAMOND");
+        } else if (map.get(y)[x] == URANIUM) {
+          player.addOre("URANIUM");
+        } else if (map.get(y)[x] == TITANIUM) {
+          player.addOre("TITANIUM");
+        } else if (map.get(y)[x] == TIME) {
+          timer.addTime(3);
+        } else if (map.get(y)[x] == MOLE) {
+          mole.run(x, y);
         }
+        map.get(y)[x] = SKY;
+        maxClearedY = Math.max(maxClearedY, y);
       }
+    }
+    if (maxClearedY != newY) {
+      player.setY(maxClearedY);
     }
   }
   
