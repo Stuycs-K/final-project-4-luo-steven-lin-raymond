@@ -47,6 +47,18 @@ public class Menu {
     text("Starting Time: " + timer.startTime + " s", width/2 - 150, height/2 - 50);
     text("Max Time: " + timer.maxTime + " s", width/2 + 150, height/2 - 50);
     
+    String dig_size = "Dig Size: ";
+    if(shop.digUpgradeLevel == 0) {
+      dig_size += "1x1";
+    }
+    else if(shop.digUpgradeLevel == 1) {
+      dig_size += "3x3";
+    }
+    else if(shop.digUpgradeLevel == 2) {
+      dig_size += "5x5";
+    }
+    text(dig_size, width/2, height/2);
+    
     shop.display();
     
   }
