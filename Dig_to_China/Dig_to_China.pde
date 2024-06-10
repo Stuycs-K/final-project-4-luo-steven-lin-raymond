@@ -17,8 +17,6 @@ void setup() {
   mole = new Mole();
 }
 
-<<<<<<< HEAD
-=======
 void reset() {
   game = false;
   level = new Level();
@@ -27,7 +25,6 @@ void reset() {
   mole = new Mole();
 }
 
->>>>>>> 9df77a54104d0732a21002e3560a932b6128c7b9
 void draw() {
   if(game) {
     level.display();
@@ -58,14 +55,6 @@ void keyPressed() {
         level.keyAction();
   }
 }
-
-void reset() {
-  game = false;
-  level = new Level();
-  timer.reset();
-  player.reset();
-}
-
 
 void keyReleased() {
   if(game) {
