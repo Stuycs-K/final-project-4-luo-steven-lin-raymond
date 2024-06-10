@@ -133,7 +133,7 @@ public class Shop {
   public void applyDigUpgrade() {
     digUpgradeLevel++;
     digUpgradeApplied = true;
-    player.range = digUpgradeLevel + 1;
+    player.range += 2;
     HashMap<String, Integer> inv = player.getInventory();
     if (digUpgradeLevel == 1) {
       inv.put("DIAMOND", inv.get("DIAMOND") - 10);
@@ -143,11 +143,12 @@ public class Shop {
       inv.put("DIAMOND", inv.get("DIAMOND") - 20);
       inv.put("URANIUM", inv.get("URANIUM") - 10);
       inv.put("TITANIUM", inv.get("TITANIUM") - 2);
-    } else if (digUpgradeLevel == 3) {
-      inv.put("DIAMOND", inv.get("DIAMOND") - 40);
-      inv.put("URANIUM", inv.get("URANIUM") - 20);
-      inv.put("TITANIUM", inv.get("TITANIUM") - 4);
     }
+    //else if (digUpgradeLevel == 3) {
+    //  inv.put("DIAMOND", inv.get("DIAMOND") - 40);
+    //  inv.put("URANIUM", inv.get("URANIUM") - 20);
+    //  inv.put("TITANIUM", inv.get("TITANIUM") - 4);
+    //}
     updateDigUpgradeText();
   }
 
@@ -156,9 +157,11 @@ public class Shop {
       digUpgrade.text = "Increase Dig Distance\n10 DIAMONDS, 5 URANIUM, 1 TITANIUM";
     } else if (digUpgradeLevel == 1) {
       digUpgrade.text = "Increase Dig Distance\n20 DIAMONDS, 10 URANIUM, 2 TITANIUM";
-    } else if (digUpgradeLevel == 2) {
-      digUpgrade.text = "Increase Dig Distance\n40 DIAMONDS, 20 URANIUM, 4 TITANIUM";
-    } else {
+    }
+    //else if (digUpgradeLevel == 2) {
+    //  digUpgrade.text = "Increase Dig Distance\n40 DIAMONDS, 20 URANIUM, 4 TITANIUM";
+    //}
+    else {
       digUpgrade.text = "Max Dig Distance\nMax Level Reached";
       digUpgrade.enabled = false;
     }
@@ -186,9 +189,10 @@ public class Shop {
       return inv.get("DIAMOND") >= 10 && inv.get("URANIUM") >= 5 && inv.get("TITANIUM") >= 1;
     } else if (digUpgradeLevel == 1) {
       return inv.get("DIAMOND") >= 20 && inv.get("URANIUM") >= 10 && inv.get("TITANIUM") >= 2;
-    } else if (digUpgradeLevel == 2) {
-      return inv.get("DIAMOND") >= 40 && inv.get("URANIUM") >= 20 && inv.get("TITANIUM") >= 4;
     }
+    //else if (digUpgradeLevel == 2) {
+    //  return inv.get("DIAMOND") >= 40 && inv.get("URANIUM") >= 20 && inv.get("TITANIUM") >= 4;
+    //}
     return false;
   }
 

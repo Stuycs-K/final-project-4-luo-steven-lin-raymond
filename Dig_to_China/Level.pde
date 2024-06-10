@@ -95,9 +95,6 @@ public class Level {
 
     public void press(int key_, boolean keyCoded) {
         if (keyCoded) {
-            if (key_ == UP) {
-                inputs[0] = true;
-            }
             if (key_ == LEFT) {
                 inputs[1] = true;
             }
@@ -108,9 +105,6 @@ public class Level {
                 inputs[3] = true;
             }
         } else {
-            if (key_ == 'w' || key_ == 'W') {
-                inputs[0] = true;
-            }
             if (key_ == 'a' || key_ == 'A') {
                 inputs[1] = true;
             }
@@ -131,9 +125,6 @@ public class Level {
 
     public void release(int key_, boolean keyCoded) {
         if (keyCoded) {
-            if (key_ == UP) {
-                inputs[0] = false;
-            }
             if (key_ == LEFT) {
                 inputs[1] = false;
             }
@@ -144,9 +135,6 @@ public class Level {
                 inputs[3] = false;
             }
         } else {
-            if (key_ == 'w' || key_ == 'W') {
-                inputs[0] = false;
-            }
             if (key_ == 'a' || key_ == 'A') {
                 inputs[1] = false;
             }
