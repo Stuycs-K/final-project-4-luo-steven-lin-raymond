@@ -2,6 +2,10 @@
 
 ## Steven Luo
 
+### 06/09/2024
+- Last minute changes to ensure that the main worked (ensureGravity instantness ignored)
+- Recorded presentation and reworked prototype
+
 ### 06/08/2024
 - Fixed mole class, changed so that it now goes up. Also I'm just accepting the instant nature now.
 - Attempted to fix ensureGravity's instantness again.
@@ -63,6 +67,39 @@
 
 
 ## Raymond Lin
+
+### 06/09/2024
+- Finished the endgame menu
+- Recorded the video presentation of the project
+
+### 06/08/2024
+- Started on the end of the game and the endgame menu
+
+### 06/06/2024
+- Fixed bugs with the digUpgrade upgrade
+
+### 06/04/2024
+- Added the 5x5 upgrade to the digUpgrade upgrade
+
+### 06/03/2024
+- Brainstormed with Steven on the mole idea and how it would work
+- Added the 3x3 upgrade to the digUpgrade upgrade
+
+### 06/01/2024
+- Changed the menu to fit the four buttons
+
+### 05/31/2024
+- Finished the digUpgrade button
+- Started working on extra upgrades to the digUpgrade button
+
+### 05/30/2024
+- Fixed the digging so that it wouldn't be able to dig past the edges
+- Started on the digUpgrade button
+
+### 05/29/2024
+- Finished the inventory system
+- Created the digging function
+- Started on the moveplayer function and idea
 
 ### 05/28/2024
 - Started inventory system
