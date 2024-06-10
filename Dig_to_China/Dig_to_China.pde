@@ -5,6 +5,7 @@ Menu menu;
 Level level;
 Player player;
 Timer timer;
+Mole mole;
 
 void setup() {
   size(800, 800);
@@ -13,13 +14,7 @@ void setup() {
   timer = new Timer();
   menu = new Menu();
   player = new Player();
-}
-
-void reset() {
-  game = false;
-  level = new Level();
-  timer.reset();
-  player.reset();
+  mole = new Mole();
 }
 
 void draw() {
@@ -31,16 +26,35 @@ void draw() {
   }
 }
 
+void showEndScreen() {
+    background(0); 
+    textSize(32);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    text("You've Reached China!", width / 2, height / 2);
+    textSize(20);
+    text("Press 'R' to Reset", width / 2, height / 2 + 50);
+    game = false;
+}
+
 void keyPressed() {
   if(game) {
     if(key == CODED) {
       level.press(keyCode, true);
-    } else {
-      level.press(key, false);
-    }
-    level.keyAction();
+        } else {
+            level.press(key, false);
+        }
+        level.keyAction();
   }
 }
+
+void reset() {
+  game = false;
+  level = new Level();
+  timer.reset();
+  player.reset();
+}
+
 
 void keyReleased() {
   if(game) {

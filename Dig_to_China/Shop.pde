@@ -4,6 +4,7 @@ public class Shop {
   private Button max;
   private Button digUpgrade;
   private Button bombs;
+  private int digUpgradeLevel = 0;
   private boolean digUpgradeApplied = false;
   
   public Shop() {
@@ -23,6 +24,24 @@ public class Shop {
     
     bombs = new Button(rightButton, height-400 + buttonHeight + 50, buttonWidth, buttonHeight);
     bombs.text = "+1 Bomb\n3 DIAMONDS";
+  }
+  
+  private void updateDigUpgradeText() {
+      switch (digUpgradeLevel) {
+          case 0:
+              digUpgrade.text = "Increase Dig Distance\n1 DIAMOND, 1 URANIUM, 1 TITANIUM";
+              break;
+          case 1:
+              digUpgrade.text = "Increase Dig Distance\n1 DIAMOND, 1 URANIUM, 1 TITANIUM";
+              break;
+          case 2:
+              digUpgrade.text = "Max Dig Distance\n1 DIAMOND, 1 URANIUM, 1 TITANIUM";
+              break;
+          default:
+              digUpgrade.text = "Max Level Reached";
+              digUpgrade.enabled = false;
+              break;
+      }
   }
   
   public void display() {
@@ -107,15 +126,27 @@ public class Shop {
     inv.put("URANIUM", inv.get("URANIUM")-2);
   }
   
-  public void applyDigUpgrade(){
-    digUpgradeApplied = true;
-    player.range++;
-    HashMap<String, Integer> inv = player.getInventory();
-    inv.put("DIAMOND", inv.get("DIAMOND") - 10);
-    inv.put("URANIUM", inv.get("URANIUM") - 5);
-    inv.put("TITANIUM", inv.get("TITANIUM") - 1);
+  public void applyDigUpgrade() {
+      digUpgradeLevel++;
+      digUpgradeApplied = true;
+      switch (digUpgradeLevel) {
+          case 1:
+              player.range = 3; 
+              break;
+          case 2:
+              player.range = 5; 
+              break;
+          default:
+              player.range = 5; 
+              break;
+      }
+      HashMap<String, Integer> inv = player.getInventory();
+      inv.put("DIAMOND", inv.get("DIAMOND") - 0);
+      inv.put("URANIUM", inv.get("URANIUM") - 0);
+      inv.put("TITANIUM", inv.get("TITANIUM") - 0);
+      updateDigUpgradeText();
   }
-  
+
   public void applyBomb() {
     HashMap<String, Integer> inv = player.getInventory();
     inv.put("DIAMOND", inv.get("DIAMOND")-3);
@@ -134,10 +165,10 @@ public class Shop {
   
   
   public boolean fulfilledDigUpgrade() {
-    HashMap<String, Integer> inv = player.getInventory();
-    return inv.get("DIAMOND") >= 10 && inv.get("URANIUM") >= 5 && !digUpgradeApplied;
+      HashMap<String, Integer> inv = player.getInventory();
+      return inv.get("DIAMOND") >= 0 && inv.get("URANIUM") >= 0 && inv.get("TITANIUM") >= 0;
   }
-
+  
   public boolean isDigUpgradeApplied() {
     return digUpgradeApplied;
   } 
@@ -146,6 +177,7 @@ public class Shop {
     HashMap<String, Integer> inv = player.getInventory();
     return inv.get("DIAMOND") >= 3;
   }
+  
   public void keyRelease(char key_) {
     
   }

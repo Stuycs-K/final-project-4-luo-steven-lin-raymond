@@ -1,4 +1,5 @@
 public class Level {
+  private static final int WIN_DEPTH = 600;
   public final int SIZE = 40;
   
   private LinkedList<int[]> map = new LinkedList<>();
@@ -9,6 +10,7 @@ public class Level {
   private final int TITANIUM = 4;
   private final int TIME = 5;
   private final int STONE = 6;
+  private final int MOLE = 9998;
   private final int PLAYER = 9999;
   
   private boolean[] inputs;
@@ -57,7 +59,13 @@ public class Level {
         row[j] = TITANIUM;
       }
       else {
-        row[j] = TIME;
+        chance = Math.random();
+        if(chance < 0.5 && player != null && player.depth >= 150) {
+          row[j] = MOLE;
+        }
+        else {
+          row[j] = TIME;
+        }
       }
     }
     return row;
@@ -96,6 +104,9 @@ public class Level {
         }
         else if(tile == TIME) {
           fill(255);
+        }
+        else if(tile == MOLE) {
+          fill(255, 0, 0);
         }
         else if(tile == PLAYER) {
           fill(0);
@@ -212,29 +223,40 @@ public class Level {
   }
   
   public void dig(int newX, int newY) {
-    if(newX < 0 || newX >= SIZE || newY < 0 || newY >= SIZE) {
-      return;
-    } 
-    
-    int[][] positions = {{newX, newY}, {newX + player.range, newY}, {newX, newY - player.range}, {newX + player.range, newY - player.range}};
-    
-    for (int[] pos : positions){
-      int x = pos[0];
-      int y = pos[1];
-      if (x >= 0 && x < SIZE && y >= 0 && y < SIZE) {
-        if (map.get(y)[x] == DIAMOND) {
-          player.addOre("DIAMOND");
-        } else if (map.get(y)[x] == URANIUM) {
-          player.addOre("URANIUM");
-        } else if (map.get(y)[x] == TITANIUM) {
-          player.addOre("TITANIUM");
-        } else if (map.get(y)[x] == TIME) {
-          timer.addTime(3);
-        }
-        map.get(y)[x] = SKY;
+      if (newX < 0 || newX >= SIZE || newY < 0 || newY >= SIZE) {
+          return;
       }
-    }
-    
+
+      int range = player.range; 
+      int halfRange = range / 2; 
+      int startX = newX - halfRange;
+      int startY = newY - halfRange;
+      int endX = newX + halfRange;
+      int endY = newY + halfRange;
+      startX = Math.max(0, startX);
+      startY = Math.max(0, startY);
+      endX = Math.min(SIZE - 1, endX);
+      endY = Math.min(SIZE - 1, endY);
+
+      int maxClearedY = newY;
+      for (int y = startY; y <= endY; y++) {
+          for (int x = startX; x <= endX; x++) {
+              if (map.get(y)[x] == DIAMOND) {
+                  player.addOre("DIAMOND");
+              } else if (map.get(y)[x] == URANIUM) {
+                  player.addOre("URANIUM");
+              } else if (map.get(y)[x] == TITANIUM) {
+                  player.addOre("TITANIUM");
+              } else if (map.get(y)[x] == TIME) {
+                  timer.addTime(3);
+              }
+              map.get(y)[x] = SKY;
+              maxClearedY = Math.max(maxClearedY, y);
+          }
+      }
+      if (maxClearedY != newY) {
+          player.setY(maxClearedY);
+      }
   }
   
   private void movePlayer(int dy, int dx){
@@ -253,12 +275,26 @@ public class Level {
       //}
       if(dy == 1) {
         player.addDepth();
+        if (player.getDepth() >= WIN_DEPTH){
+          endGame();
+          return;
         //println(player.getDepth());
+        }
       }
     }
     else if (newY >= SIZE - 5) {
       generate();
     } 
+  }
+  
+  private void endGame(){
+    game = false;
+    textSize(32);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    text("You've Reached China!", width / 2, height / 2);
+    delay(3000);
+    reset();
   }
   
   private void generate() {
