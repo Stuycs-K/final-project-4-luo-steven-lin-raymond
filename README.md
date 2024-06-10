@@ -1,6 +1,6 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/syDSSnTt)
 # APCS2 Final Project
-THIS DOCUMENT IS REQUIRED
+
 ## Group Info
 
 Group Members: Raymond Lin, Steven Luo
@@ -32,7 +32,9 @@ In the game:
 - Use B to bomb a certain area. The player will automatically drop.
 - Use Q to quit the current digging session.
 
+## [Presentation] (https://drive.google.com/file/d/1-fUCNs1dRcO_qBYCj3-_hVbrl82_tGw4/view?usp=sharing)
+
 ## Bugs
 
 - When the digging upgrades are applied, the player's movements lags a little bit.
-- When the digging upgrades are applied and the player digs up, the player stops appearing.
+- The mole may not work as intended if it is mined during map generation.
