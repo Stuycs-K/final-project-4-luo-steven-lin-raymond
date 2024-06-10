@@ -1,6 +1,6 @@
 import java.util.*;
 
-boolean game = true;
+boolean game = false;
 Menu menu;
 Level level;
 Player player;
@@ -18,17 +18,12 @@ void setup() {
 }
 
 void draw() {
-    if (game) {
-        if (player.getDepth() >= 600) {
-            showEndScreen();
-        } else {
-            background(0);  
-            level.display(); 
-            timer.display(); 
-        }
-    } else {
-        menu.display(); 
-    }
+  if(game) {
+    level.display();
+    timer.display();
+  } else {
+    menu.display();
+  }
 }
 
 void showEndScreen() {
@@ -43,25 +38,21 @@ void showEndScreen() {
 }
 
 void keyPressed() {
-    if (game) {
-        if (key == CODED) {
-            level.press(keyCode, true);
+  if(game) {
+    if(key == CODED) {
+      level.press(keyCode, true);
         } else {
             level.press(key, false);
         }
         level.keyAction();
-    } else {
-      if (key == 'r' || key == 'R') {
-            reset(); 
-        }
-    }
+  }
 }
 
 void reset() {
-    game = false;
-    level = new Level(); 
-    timer = new Timer(); 
-    player = new Player(); 
+  game = false;
+  level = new Level();
+  timer.reset();
+  player.reset();
 }
 
 

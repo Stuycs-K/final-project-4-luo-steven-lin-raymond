@@ -226,7 +226,7 @@ public class Level {
       if (newX < 0 || newX >= SIZE || newY < 0 || newY >= SIZE) {
           return;
       }
-  
+
       int range = player.range; 
       int halfRange = range / 2; 
       int startX = newX - halfRange;
@@ -237,7 +237,7 @@ public class Level {
       startY = Math.max(0, startY);
       endX = Math.min(SIZE - 1, endX);
       endY = Math.min(SIZE - 1, endY);
-  
+
       int maxClearedY = newY;
       for (int y = startY; y <= endY; y++) {
           for (int x = startX; x <= endX; x++) {

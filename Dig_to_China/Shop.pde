@@ -141,9 +141,9 @@ public class Shop {
               break;
       }
       HashMap<String, Integer> inv = player.getInventory();
-      inv.put("DIAMOND", inv.get("DIAMOND") - 1);
-      inv.put("URANIUM", inv.get("URANIUM") - 1);
-      inv.put("TITANIUM", inv.get("TITANIUM") - 1);
+      inv.put("DIAMOND", inv.get("DIAMOND") - 0);
+      inv.put("URANIUM", inv.get("URANIUM") - 0);
+      inv.put("TITANIUM", inv.get("TITANIUM") - 0);
       updateDigUpgradeText();
   }
 
@@ -166,7 +166,7 @@ public class Shop {
   
   public boolean fulfilledDigUpgrade() {
       HashMap<String, Integer> inv = player.getInventory();
-      return inv.get("DIAMOND") >= 1 && inv.get("URANIUM") >= 1 && inv.get("TITANIUM") >= 1;
+      return inv.get("DIAMOND") >= 0 && inv.get("URANIUM") >= 0 && inv.get("TITANIUM") >= 0;
   }
   
   public boolean isDigUpgradeApplied() {
