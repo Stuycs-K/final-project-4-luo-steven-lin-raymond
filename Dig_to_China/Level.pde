@@ -1,4 +1,5 @@
 public class Level {
+  private static final int WIN_DEPTH = 600;
   public final int SIZE = 40;
   
   private LinkedList<int[]> map = new LinkedList<>();
@@ -274,12 +275,26 @@ public class Level {
       //}
       if(dy == 1) {
         player.addDepth();
+        if (player.getDepth() >= WIN_DEPTH){
+          endGame();
+          return;
         //println(player.getDepth());
+        }
       }
     }
     else if (newY >= SIZE - 5) {
       generate();
     } 
+  }
+  
+  private void endGame(){
+    game = false;
+    textSize(32);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    text("You've Reached China!", width / 2, height / 2);
+    delay(3000);
+    reset();
   }
   
   private void generate() {
