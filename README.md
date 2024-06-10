@@ -15,7 +15,7 @@ During each dig, the player can mine different ores. These ores can be used to b
 
 During each dig, the player may also find "time ores" which temporarily gives more time to the player.
 
-Although the player can dig in four cardinal directions, the player can only move sideways and down. However, if the player goes deep enough, they may eventually encounter a mole, which digs sideways and up. Moles allow the player to reach spots that they may have otherwise missed.
+The player can only move sideways and down. However, if the player goes deep enough, they may eventually encounter a mole, which digs sideways and up. Moles allow the player to reach spots that they may have otherwise missed.
 
 ## Instructions
 
@@ -28,11 +28,12 @@ In the menu:
 
 In the game:
 - Use the A, S, D (or their corresponding arrow keys) to move the player and dig in that direction.
-- Use the W (or UP arrow key) to dig up. The player will not move.
 - Use B to bomb a certain area. The player will automatically drop.
 - Use Q to quit the current digging session.
 
-## [Presentation] (https://drive.google.com/file/d/1-fUCNs1dRcO_qBYCj3-_hVbrl82_tGw4/view?usp=sharing)
+## Presentation
+
+https://drive.google.com/file/d/1-fUCNs1dRcO_qBYCj3-_hVbrl82_tGw4/view?usp=sharing
 
 ## Bugs
 
