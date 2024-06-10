@@ -14,7 +14,6 @@ public class Bomb {
         level.dig(j, i);
       }
     }
-    level.movePlayer(2, 0);
   }
   
   public void display() {

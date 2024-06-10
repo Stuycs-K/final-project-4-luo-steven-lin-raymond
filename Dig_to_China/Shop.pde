@@ -37,7 +37,11 @@ public class Shop {
     } else {
       start.fulfilled = false;
     }
+<<<<<<< HEAD
     upgradeStartText();
+=======
+    updateStartText();
+>>>>>>> 2468d6d5a3483e8615a844ab53ba974b8b591343
 
     if (fulfilledMax()) {
       max.fulfilled = true;
@@ -102,7 +106,11 @@ public class Shop {
     inv.put("DIAMOND", inv.get("DIAMOND") - 7);
   }
 
+<<<<<<< HEAD
   private void upgradeStartText() {
+=======
+  private void updateStartText() {
+>>>>>>> 2468d6d5a3483e8615a844ab53ba974b8b591343
     if (timer.startTime < timer.maxTime) {
       start.text = "+3 seconds to start\n7 DIAMONDS";
       start.enabled = true;
@@ -117,8 +125,23 @@ public class Shop {
     HashMap<String, Integer> inv = player.getInventory();
     inv.put("DIAMOND", inv.get("DIAMOND") - 10);
     inv.put("URANIUM", inv.get("URANIUM") - 2);
+<<<<<<< HEAD
     upgradeMaxText();
   }
+=======
+    updateMaxText();
+  }
+  
+  private void updateMaxText() {
+    if (timer.maxTime < timer.TIMER_THRESHOLD) {
+      max.text = "+3 seconds to max\n10 DIAMONDS, 2 URANIUM";
+      max.enabled = true;
+    } else {
+      max.text = "Max Total Time Reached";
+      max.enabled = false;
+    }
+  }
+>>>>>>> 2468d6d5a3483e8615a844ab53ba974b8b591343
 
   public void applyDigUpgrade() {
     digUpgradeLevel++;
@@ -133,6 +156,13 @@ public class Shop {
       inv.put("DIAMOND", inv.get("DIAMOND") - 20);
       inv.put("URANIUM", inv.get("URANIUM") - 10);
       inv.put("TITANIUM", inv.get("TITANIUM") - 2);
+<<<<<<< HEAD
+=======
+    } else if (digUpgradeLevel == 3) {
+      inv.put("DIAMOND", inv.get("DIAMOND") - 40);
+      inv.put("URANIUM", inv.get("URANIUM") - 20);
+      inv.put("TITANIUM", inv.get("TITANIUM") - 4);
+>>>>>>> 2468d6d5a3483e8615a844ab53ba974b8b591343
     }
     updateDigUpgradeText();
   }
@@ -143,6 +173,11 @@ public class Shop {
     } else if (digUpgradeLevel == 1) {
       digUpgrade.text = "Increase Dig Distance\n20 DIAMONDS, 10 URANIUM, 2 TITANIUM";
     } else if (digUpgradeLevel == 2) {
+<<<<<<< HEAD
+=======
+      digUpgrade.text = "Increase Dig Distance\n40 DIAMONDS, 20 URANIUM, 4 TITANIUM";
+    } else {
+>>>>>>> 2468d6d5a3483e8615a844ab53ba974b8b591343
       digUpgrade.text = "Max Dig Distance\nMax Level Reached";
       digUpgrade.enabled = false;
     }
@@ -170,6 +205,11 @@ public class Shop {
       return inv.get("DIAMOND") >= 10 && inv.get("URANIUM") >= 5 && inv.get("TITANIUM") >= 1;
     } else if (digUpgradeLevel == 1) {
       return inv.get("DIAMOND") >= 20 && inv.get("URANIUM") >= 10 && inv.get("TITANIUM") >= 2;
+<<<<<<< HEAD
+=======
+    } else if (digUpgradeLevel == 2) {
+      return inv.get("DIAMOND") >= 40 && inv.get("URANIUM") >= 20 && inv.get("TITANIUM") >= 4;
+>>>>>>> 2468d6d5a3483e8615a844ab53ba974b8b591343
     }
     return false;
   }
@@ -186,9 +226,26 @@ public class Shop {
   public void keyRelease(char key_) {
     if (key_ == '1') {
       HashMap<String, Integer> inv = player.getInventory();
+<<<<<<< HEAD
             inv.put("DIAMOND", inv.get("DIAMOND") + 100);
       inv.put("URANIUM", inv.get("URANIUM") + 100);
       inv.put("TITANIUM", inv.get("TITANIUM") + 100);
     }
+=======
+      inv.put("DIAMOND", inv.get("DIAMOND") + 100);
+      inv.put("URANIUM", inv.get("URANIUM") + 100);
+      inv.put("TITANIUM", inv.get("TITANIUM") + 100);
+    }
+  }
+  
+  public void upgradeMaxText() {
+    if (timer.maxTime < timer.TIMER_THRESHOLD) {
+        max.text = "+3 seconds to max\n10 DIAMONDS, 2 URANIUM";
+        max.enabled = true;
+    } else {
+        max.text = "Max Time Threshold Reached";
+        max.enabled = false;
+    }
+>>>>>>> 2468d6d5a3483e8615a844ab53ba974b8b591343
   }
 }
