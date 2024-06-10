@@ -191,4 +191,14 @@ public class Shop {
       inv.put("TITANIUM", inv.get("TITANIUM") + 100);
     }
   }
+  
+  public void upgradeMaxText() {
+    if (timer.maxTime < timer.TIMER_THRESHOLD) {
+        max.text = "+3 seconds to max\n10 DIAMONDS, 2 URANIUM";
+        max.enabled = true;
+    } else {
+        max.text = "Max Time Threshold Reached";
+        max.enabled = false;
+    }
+  }
 }
