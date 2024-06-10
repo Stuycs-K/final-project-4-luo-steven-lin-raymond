@@ -222,13 +222,15 @@ public class Level {
         int newY = player.getY() + dy;
 
         if (newX >= 0 && newX < SIZE && newY >= 0 && newY < SIZE - 5) {
+            if(map.get(newY)[newX] != SKY) {
+                dig(newX, newY);
+            }
             map.get(player.getY())[player.getX()] = SKY;
             player.setX(newX);
             player.setY(newY);
             map.get(newY)[newX] = PLAYER;
-
             if (dy == 1) {
-                player.addDepth();
+                player.addDepth(1);
                 if (player.getDepth() >= WIN_DEPTH) {
                     endGame();
                     return;

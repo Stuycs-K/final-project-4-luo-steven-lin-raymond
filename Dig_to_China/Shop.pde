@@ -37,7 +37,7 @@ public class Shop {
     } else {
       start.fulfilled = false;
     }
-    upgradeStartText();
+    updateStartText();
 
     if (fulfilledMax()) {
       max.fulfilled = true;
@@ -102,7 +102,7 @@ public class Shop {
     inv.put("DIAMOND", inv.get("DIAMOND") - 7);
   }
 
-  private void upgradeStartText() {
+  private void updateStartText() {
     if (timer.startTime < timer.maxTime) {
       start.text = "+3 seconds to start\n7 DIAMONDS";
       start.enabled = true;
@@ -117,7 +117,17 @@ public class Shop {
     HashMap<String, Integer> inv = player.getInventory();
     inv.put("DIAMOND", inv.get("DIAMOND") - 10);
     inv.put("URANIUM", inv.get("URANIUM") - 2);
-    upgradeMaxText();
+    updateMaxText();
+  }
+  
+  private void updateMaxText() {
+    if (timer.maxTime < timer.TIMER_THRESHOLD) {
+      max.text = "+3 seconds to max\n10 DIAMONDS, 2 URANIUM";
+      max.enabled = true;
+    } else {
+      max.text = "Max Total Time Reached";
+      max.enabled = false;
+    }
   }
 
   public void applyDigUpgrade() {
@@ -186,7 +196,7 @@ public class Shop {
   public void keyRelease(char key_) {
     if (key_ == '1') {
       HashMap<String, Integer> inv = player.getInventory();
-            inv.put("DIAMOND", inv.get("DIAMOND") + 100);
+      inv.put("DIAMOND", inv.get("DIAMOND") + 100);
       inv.put("URANIUM", inv.get("URANIUM") + 100);
       inv.put("TITANIUM", inv.get("TITANIUM") + 100);
     }
