@@ -2,6 +2,24 @@
 
 ## Steven Luo
 
+### 06/08/2024
+- Fixed mole class, changed so that it now goes up. Also I'm just accepting the instant nature now.
+- Attempted to fix ensureGravity's instantness again.
+
+### 06/07/2024
+- Tried to fix mole class (instant weirdness + stack overflow)
+- Started ensureGravity
+
+### 06/05/2024
+- Started mole class
+- Fixed demo bypass
+
+### 06/04/2024
+- Resolved a conflict
+
+### 06/03/2024
+- Imported bypass from demo: add 100 to materials when press '1'
+
 ### 06/02/2024
 - The buttons now change color depending on availability of item
 

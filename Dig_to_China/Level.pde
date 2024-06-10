@@ -32,7 +32,7 @@ public class Level {
     map.add(row);
     
     for(int i = SIZE/2+1; i < SIZE; i++) {
-      row = generateRow();
+      row = generateRow(i);
       map.add(row);
     }
     
@@ -41,40 +41,11 @@ public class Level {
     //}
   }
   
-  public int[] generateRow() {
-    int[] row = new int[SIZE];
-    double chance;
-    for(int j = 0; j < row.length; j++) {
-      chance = Math.random();
-      if(chance < 0.95) {
-        row[j] = STONE;
-      }
-      else if(chance < 0.97) {
-        row[j] = DIAMOND;
-      }
-      else if(chance < 0.985) {
-        row[j] = URANIUM;
-      }
-      else if(chance < 0.995) {
-        row[j] = TITANIUM;
-      }
-      else {
-        chance = Math.random();
-        if(chance < 0.5 && player != null && player.depth >= 150) {
-          row[j] = MOLE;
-        }
-        else {
-          row[j] = TIME;
-        }
-      }
-    }
-    return row;
-  }
-  
   public void display() {
     if(!timer.isPositive()) {
       reset();
     }
+    ensureGravity();
     
     textAlign(LEFT);
     background(0);
@@ -119,12 +90,7 @@ public class Level {
     
     bomb.display();
     
-    int current = millis();
-    if(current - pastTime >= 1000) {
-      //println("TICK");
-      timer.tick();
-      pastTime = current;
-    }
+    timer.tick();
   }
   
   public boolean[] getInputs() {
@@ -256,7 +222,42 @@ public class Level {
       }
       if (maxClearedY != newY) {
           player.setY(maxClearedY);
+    if (newX < 0 || newX >= SIZE || newY < 0 || newY >= SIZE) {
+        return;
+    }
+
+    int range = player.range; 
+    int halfRange = range / 2; 
+    int startX = newX - halfRange;
+    int startY = newY - halfRange;
+    int endX = newX + halfRange;
+    int endY = newY + halfRange;
+    startX = Math.max(0, startX);
+    startY = Math.max(0, startY);
+    endX = Math.min(SIZE - 1, endX);
+    endY = Math.min(SIZE - 1, endY);
+
+    int maxClearedY = newY;
+    for (int y = startY; y <= endY; y++) {
+      for (int x = startX; x <= endX; x++) {
+        if (map.get(y)[x] == DIAMOND) {
+          player.addOre("DIAMOND");
+        } else if (map.get(y)[x] == URANIUM) {
+          player.addOre("URANIUM");
+        } else if (map.get(y)[x] == TITANIUM) {
+          player.addOre("TITANIUM");
+        } else if (map.get(y)[x] == TIME) {
+          timer.addTime(3);
+        } else if (map.get(y)[x] == MOLE) {
+          mole.run(x, y);
+        }
+        map.get(y)[x] = SKY;
+        maxClearedY = Math.max(maxClearedY, y);
       }
+    }
+    if (maxClearedY != newY) {
+      player.setY(maxClearedY);
+    }
   }
   
   private void movePlayer(int dy, int dx){
@@ -281,6 +282,7 @@ public class Level {
         //println(player.getDepth());
         }
       }
+      player.addDepth(dy);
     }
     else if (newY >= SIZE - 5) {
       generate();
@@ -298,10 +300,66 @@ public class Level {
   }
   
   private void generate() {
-    for(int i = 0; i < SIZE/2; i++) {
+    for(int i = SIZE/2; i < SIZE; i++) {
       map.removeFirst();
-      map.add(generateRow());
+      map.add(generateRow(i));
       player.setY(player.getY()-1);
+    }
+  }
+  
+  public int[] generateRow(int depth) {
+    int[] row = new int[SIZE];
+    double chance;
+    for(int j = 0; j < row.length; j++) {
+      chance = Math.random();
+      if(chance < 0.95) {
+        row[j] = STONE;
+      }
+      else if(chance < 0.97) {
+        row[j] = DIAMOND;
+      }
+      else if(chance < 0.985) {
+        row[j] = URANIUM;
+      }
+      else if(chance < 0.995) {
+        row[j] = TITANIUM;
+      }
+      else {
+        chance = Math.random();
+        if(chance < 0.5 && player != null && player.depth >= 150 && depth < SIZE - 5) {
+        //if(chance < 0.5 && player != null && depth < SIZE - 5) {
+          row[j] = MOLE;
+        }
+        else {
+          row[j] = TIME;
+        }
+      }
+    }
+    return row;
+  }
+  
+  private void ensureGravity() {
+    if(map.get(player.y+1)[player.x] != SKY) {
+      return;
+    }
+    
+    int dy = 1;
+    while(player.y + dy < SIZE && map.get(player.y + dy)[player.x] == SKY) {
+      dy++;
+    }
+    
+    int last = millis();
+    int savedX = player.x;
+    while(dy > 1) {
+      if(player.x != savedX) {
+        break;
+      }
+      int difference = millis() - last;
+      if(difference > 100) {
+        movePlayer(1, 0);
+        dy--;
+        last = millis();
+      }
     }
   }
 }
