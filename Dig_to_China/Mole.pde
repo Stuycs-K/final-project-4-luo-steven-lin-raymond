@@ -1,7 +1,7 @@
 public class Mole {
-  int x = 0;
-  int y = 0;
-  boolean active;
+  private int x = 0;
+  private int y = 0;
+  private boolean active;
   
   public Mole() {
     active = false;
