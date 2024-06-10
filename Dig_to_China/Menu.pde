@@ -1,7 +1,8 @@
 public class Menu {
   private Button begin;
   private boolean[] inputs;
-  Shop shop;
+  private Shop shop;
+  private boolean complete;
   
   public Menu() {
     shop = new Shop();
@@ -12,12 +13,20 @@ public class Menu {
     begin.hover1TextColor = color(0);
     
     inputs = new boolean[10];
+    complete = false;
   }
   
   public void display() {
     textAlign(CENTER, CENTER);
     background(0);
     textSize(36);
+    
+    if(complete) {
+      fill(255);
+      text("You've Reached China!", width / 2, height / 2);
+      return;
+    }
+    
     fill(255);
     text("MENU", width/2, 50);
     begin.display();

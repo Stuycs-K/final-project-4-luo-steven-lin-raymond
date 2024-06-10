@@ -243,12 +243,7 @@ public class Level {
 
     private void endGame() {
         game = false;
-        textSize(32);
-        fill(255);
-        textAlign(CENTER, CENTER);
-        text("You've Reached China!", width / 2, height / 2);
-        delay(3000);
-        reset();
+        menu.complete = true;
     }
 
     private void generate() {
