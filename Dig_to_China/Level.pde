@@ -230,7 +230,7 @@ public class Level {
             player.setY(newY);
             map.get(newY)[newX] = PLAYER;
             if (dy == 1) {
-                player.addDepth(1);
+                player.addDepth(dy);
                 if (player.getDepth() >= WIN_DEPTH) {
                     endGame();
                     return;
